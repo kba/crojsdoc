@@ -37,14 +37,13 @@
 	margin-top: 10px;
 }
 
-.label-optional, .label-static, .label-abstract, .label-override,
-.label-property, .label-addable, .label-excludable, .label-private {
+.cormo-class-property .label {
 	margin-left: 5px;
 	font-size: 0.7em;
 }
 
 .label-optional {
-    background-color: #3a87ad;
+	background-color: #3a87ad;
 }
 
 .label-static {
@@ -59,20 +58,24 @@
 	background-color: #389486;
 }
 
+.label-async {
+	background-color: #8DAF28;
+}
+
 .label-property {
 	background-color: #c09853;
 }
 
 .label-addable {
-    background-color: #468847;
+	background-color: #468847;
 }
 
 .label-excludable {
-    background-color: #468847;
+	background-color: #468847;
 }
 
 .label-private {
-    background-color: #333333;
+	background-color: #333333;
 }
 
 .missing-link {

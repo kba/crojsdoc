@@ -1,11 +1,14 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CroJSDoc - generate_doc</title><link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-inverse navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid"><ul class="nav"><li class=""><a href="../index.html">Home</a></li><li class="dropdown "><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/AllCommands.html">AllCommands</a></li><li><a href="../guides/SpecifyingTypes.html">SpecifyingTypes</a></li></ul></li><li class="active"><a href="../modules/generate_doc.html">Modules - generate_doc</a></li><li class=""><a href="../classes/CodeContext.html">Classes</a></li><li class="dropdown "><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/comment.coffee.html">comment.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/generate_doc.coffee.html">generate_doc.coffee</a></li><li><a href="../files/bootstrap.js.bootstrap.js.html">bootstrap/js.bootstrap.js</a></li><li><a href="../files/bootstrap.js.bootstrap.min.js.html">bootstrap/js.bootstrap.min.js</a></li><li><a href="../files/dox.index.js.html">dox.index.js</a></li><li><a href="../files/dox.lib.api.js.html">dox/lib.api.js</a></li><li><a href="../files/dox.lib.dox.js.html">dox/lib.dox.js</a></li><li><a href="../files/dox.lib.dox_coffee.js.html">dox/lib.dox_coffee.js</a></li><li><a href="../files/dox.lib.utils.js.html">dox/lib.utils.js</a></li><li><a href="../files/google-code-prettify.lang-apollo.js.html">google-code-prettify.lang-apollo.js</a></li><li><a href="../files/google-code-prettify.lang-clj.js.html">google-code-prettify.lang-clj.js</a></li><li><a href="../files/google-code-prettify.lang-css.js.html">google-code-prettify.lang-css.js</a></li><li><a href="../files/google-code-prettify.lang-go.js.html">google-code-prettify.lang-go.js</a></li><li><a href="../files/google-code-prettify.lang-hs.js.html">google-code-prettify.lang-hs.js</a></li><li><a href="../files/google-code-prettify.lang-lisp.js.html">google-code-prettify.lang-lisp.js</a></li><li><a href="../files/google-code-prettify.lang-lua.js.html">google-code-prettify.lang-lua.js</a></li><li><a href="../files/google-code-prettify.lang-ml.js.html">google-code-prettify.lang-ml.js</a></li><li><a href="../files/google-code-prettify.lang-n.js.html">google-code-prettify.lang-n.js</a></li><li><a href="../files/google-code-prettify.lang-proto.js.html">google-code-prettify.lang-proto.js</a></li><li><a href="../files/google-code-prettify.lang-scala.js.html">google-code-prettify.lang-scala.js</a></li><li><a href="../files/google-code-prettify.lang-sql.js.html">google-code-prettify.lang-sql.js</a></li><li><a href="../files/google-code-prettify.lang-tex.js.html">google-code-prettify.lang-tex.js</a></li><li><a href="../files/google-code-prettify.lang-vb.js.html">google-code-prettify.lang-vb.js</a></li><li><a href="../files/google-code-prettify.lang-vhdl.js.html">google-code-prettify.lang-vhdl.js</a></li><li><a href="../files/google-code-prettify.lang-wiki.js.html">google-code-prettify.lang-wiki.js</a></li><li><a href="../files/google-code-prettify.lang-xq.js.html">google-code-prettify.lang-xq.js</a></li><li><a href="../files/google-code-prettify.lang-yaml.js.html">google-code-prettify.lang-yaml.js</a></li><li><a href="../files/google-code-prettify.prettify.js.html">google-code-prettify.prettify.js</a></li><li><a href="../files/tocify.jquery.tocify.min.js.html">tocify.jquery.tocify.min.js</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div></div><div class="container-fluid content"><div class="row-fluid"><div class="span3 visible-desktop"><div data-spy="affix" class="span3 sidebar"><ul class="nav nav-list cormo-sidenav"><li class="active"><a href="#generate_doc">generate_doc</a></li><li class="cormo-class-property private"><a href="#generate_doc_applyMarkdown">applyMarkdown<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_classifyComments">classifyComments<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_convertLink">convertLink<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_findParam">findParam<span class="label label-private">private</span></a></li><li class="cormo-class-property "><a href="#generate_doc_generate">generate</a></li><li class="cormo-class-property private"><a href="#generate_doc_getComments">getComments<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_makeNested">makeNested<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_makeTypeLink">makeTypeLink<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_processComments">processComments<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_processParamFlags">processParamFlags<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_result">result<span class="label label-private">private</span><span class="label label-property">property</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_types">types<span class="label label-private">private</span><span class="label label-property">property</span></a></li></ul></div></div><div class="span9"><div class="page-header"><section id="generate_doc"><h1 class="class_title">generate_doc</h1><div>(defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee">/lib/generate_doc.coffee</a>)</div><div></div><div></div></section></div><section id="generate_doc_applyMarkdown" class="private"><h2 class="class_method">applyMarkdown()<span class="label label-private">private</span></h2><div><p>Apply markdown</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L233">/lib/generate_doc.coffee:233</a>)</span><pre class="sourcecode prettyprint .linenums:233">applyMarkdown = (str) ->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CroJSDoc - generate_doc</title><script>if (location.protocol.match(/^http/) && location.pathname.match('\.html') === null && location.pathname.slice(-1) !== '/') {
+  location.href = location.href + '/';
+}</script><link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-inverse navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid"><ul class="nav"><li><a href="../index.html">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/AllCommands.html">AllCommands</a></li><li><a href="../guides/SpecifyingTypes.html">SpecifyingTypes</a></li></ul></li><li class="active"><a href="../modules/generate_doc.html">Modules - generate_doc</a></li><li><a href="../classes/CodeContext.html">Classes</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/comment.coffee.html">comment.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/generate_doc.coffee.html">generate_doc.coffee</a></li><li><a href="../files/bootstrap.js.bootstrap.js.html">bootstrap/js/bootstrap.js</a></li><li><a href="../files/bootstrap.js.bootstrap.min.js.html">bootstrap/js/bootstrap.min.js</a></li><li><a href="../files/dox.index.js.html">dox/index.js</a></li><li><a href="../files/dox.lib.api.js.html">dox/lib/api.js</a></li><li><a href="../files/dox.lib.dox.js.html">dox/lib/dox.js</a></li><li><a href="../files/dox.lib.dox_coffee.js.html">dox/lib/dox_coffee.js</a></li><li><a href="../files/dox.lib.utils.js.html">dox/lib/utils.js</a></li><li><a href="../files/google-code-prettify.lang-apollo.js.html">google-code-prettify/lang-apollo.js</a></li><li><a href="../files/google-code-prettify.lang-clj.js.html">google-code-prettify/lang-clj.js</a></li><li><a href="../files/google-code-prettify.lang-css.js.html">google-code-prettify/lang-css.js</a></li><li><a href="../files/google-code-prettify.lang-go.js.html">google-code-prettify/lang-go.js</a></li><li><a href="../files/google-code-prettify.lang-hs.js.html">google-code-prettify/lang-hs.js</a></li><li><a href="../files/google-code-prettify.lang-lisp.js.html">google-code-prettify/lang-lisp.js</a></li><li><a href="../files/google-code-prettify.lang-lua.js.html">google-code-prettify/lang-lua.js</a></li><li><a href="../files/google-code-prettify.lang-ml.js.html">google-code-prettify/lang-ml.js</a></li><li><a href="../files/google-code-prettify.lang-n.js.html">google-code-prettify/lang-n.js</a></li><li><a href="../files/google-code-prettify.lang-proto.js.html">google-code-prettify/lang-proto.js</a></li><li><a href="../files/google-code-prettify.lang-scala.js.html">google-code-prettify/lang-scala.js</a></li><li><a href="../files/google-code-prettify.lang-sql.js.html">google-code-prettify/lang-sql.js</a></li><li><a href="../files/google-code-prettify.lang-tex.js.html">google-code-prettify/lang-tex.js</a></li><li><a href="../files/google-code-prettify.lang-vb.js.html">google-code-prettify/lang-vb.js</a></li><li><a href="../files/google-code-prettify.lang-vhdl.js.html">google-code-prettify/lang-vhdl.js</a></li><li><a href="../files/google-code-prettify.lang-wiki.js.html">google-code-prettify/lang-wiki.js</a></li><li><a href="../files/google-code-prettify.lang-xq.js.html">google-code-prettify/lang-xq.js</a></li><li><a href="../files/google-code-prettify.lang-yaml.js.html">google-code-prettify/lang-yaml.js</a></li><li><a href="../files/google-code-prettify.prettify.js.html">google-code-prettify/prettify.js</a></li><li><a href="../files/tocify.jquery.tocify.min.js.html">tocify/jquery.tocify.min.js</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div></div><div class="container-fluid content"><div class="row-fluid"><div class="span3 visible-desktop"><div data-spy="affix" class="span3 sidebar"><ul class="nav nav-list cormo-sidenav"><li class="active"><a href="#generate_doc">generate_doc</a></li><li class="cormo-class-property private"><a href="#generate_doc_applyMarkdown">applyMarkdown<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_classifyComments">classifyComments<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_convertLink">convertLink<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_findParam">findParam<span class="label label-private">private</span></a></li><li class="cormo-class-property"><a href="#generate_doc_generate">generate</a></li><li class="cormo-class-property private"><a href="#generate_doc_getComments">getComments<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_makeNested">makeNested<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_makeTypeLink">makeTypeLink<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_processComments">processComments<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_processParamFlags">processParamFlags<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_result">result<span class="label label-private">private</span><span class="label label-property">property</span></a></li><li class="cormo-class-property private"><a href="#generate_doc_types">types<span class="label label-private">private</span><span class="label label-property">property</span></a></li></ul></div></div><div class="span9"><div class="page-header"><section id="generate_doc"><h1 class="class_title">generate_doc</h1><div>(defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee">/lib/generate_doc.coffee</a>)</div><div></div><div></div></section></div><section id="generate_doc_applyMarkdown" class="private"><h2 class="class_method">applyMarkdown()<span class="label label-private">private</span></h2><div><p>Apply markdown</p>
+</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L239">/lib/generate_doc.coffee:239</a>)</span><pre class="sourcecode prettyprint .linenums:239">applyMarkdown = (str) ->
   # we cannot use '###' for header level 3 or above in CoffeeScript, instead web use '##\#', ''##\##', ...
   # recover this for markdown
   str = str.replace /#\\#/g, '##'
   return markdown str</pre><hr class="item-seperator"></section><section id="generate_doc_classifyComments" class="private"><h2 class="class_method">classifyComments()<span class="label label-private">private</span></h2><div><p>Classifies type and collect id</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L243">/lib/generate_doc.coffee:243</a>)</span><pre class="sourcecode prettyprint .linenums:243">classifyComments = (file, comments) ->
+</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L249">/lib/generate_doc.coffee:249</a>)</span><pre class="sourcecode prettyprint .linenums:249">classifyComments = (file, comments) ->
   current_class = undefined
+  current_module = undefined
 
   comments.forEach (comment) ->
     comment.defined_in = file
@@ -21,6 +24,7 @@
     comment.uses = []
     comment.usedbys = []
     comment.properties = []
+    comment.examples = []
 
     if comment.ctx.type is 'property' or comment.ctx.type is 'method'
       id = comment.ctx.string.replace('()', '')
@@ -37,7 +41,12 @@
         comment.static = true
         comment.ctx.class_name = comment.ctx.receiver
 
-    for tag in comment.tags
+    last = 0
+    for tag, i in comment.tags
+      if tag.type is ''
+        comment.tags[last].string += "\n#{tag.string}"
+        continue
+      last = i
       switch tag.type
         when 'page', 'restapi', 'class'
           comment.ctx.type = tag.type
@@ -60,8 +69,8 @@
             comment.ctx.class_name = tag.parent
         when 'namespace'
           comment.namespace = if tag.string then tag.string + '.' else ''
-        when 'property'
-          comment.ctx.type = 'property'
+        when 'property', 'method'
+          comment.ctx.type = tag.type
           comment.ctx.name = tag.string
         when 'static'
           comment.static = true
@@ -69,6 +78,8 @@
           comment.isPrivate = true
         when 'abstract'
           comment.abstract = true
+        when 'async'
+          comment.async = true
         when 'param', 'return', 'returnprop', 'throws', 'resterror', 'see'
           , 'extends', 'todo', 'type', 'api', 'uses', 'override'
         else
@@ -85,9 +96,14 @@
 
     if comment.ctx.type is 'class'
       current_class = comment
+      if comment.is_module
+        current_module = comment
 
-    if (comment.ctx.type is 'property' or comment.ctx.type is 'method') and not comment.namespace and current_class
-      comment.namespace = current_class.namespace
+    if (comment.ctx.type is 'property' or comment.ctx.type is 'method') and not comment.namespace
+      if current_class
+        comment.namespace = current_class.namespace
+      if current_module and not comment.ctx.class_name
+        comment.ctx.class_name = current_module.ctx.name
 
     if id
       if result.ids.hasOwnProperty id
@@ -113,7 +129,7 @@
         comment.filename = 'pages'
       when 'restapi'
         comment.filename = 'restapis'</pre><hr class="item-seperator"></section><section id="generate_doc_convertLink" class="private"><h2 class="class_method">convertLink()<span class="label label-private">private</span></h2><div><p>Converts link markups to HTML links in the description</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L218">/lib/generate_doc.coffee:218</a>)</span><pre class="sourcecode prettyprint .linenums:218">convertLink = (rel_path, str) ->
+</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L224">/lib/generate_doc.coffee:224</a>)</span><pre class="sourcecode prettyprint .linenums:224">convertLink = (rel_path, str) ->
   return '' if not str
   str = str.replace /\[\[#([^\[\]]+)\]\]/g, (_, $1) ->
     if result.ids[$1] and result.ids[$1] isnt 'DUPLICATED ENTRY'
@@ -123,15 +139,15 @@
     else
       return makeMissingLink $1
   return str</pre><hr class="item-seperator"></section><section id="generate_doc_findParam" class="private"><h2 class="class_method">findParam(params, name)<span class="label label-private">private</span></h2><div><p>Finds a parameter in the list</p>
-</div><div></div><h3>Parameters:</h3><ul><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>&gt;} </span><code>params</code><span> </span></li><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>name</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L189">/lib/generate_doc.coffee:189</a>)</span><pre class="sourcecode prettyprint .linenums:189">findParam = (params, name) ->
+</div><div></div><h3>Parameters:</h3><ul><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>&gt;} </span><code>params</code><span> </span></li><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>name</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L195">/lib/generate_doc.coffee:195</a>)</span><pre class="sourcecode prettyprint .linenums:195">findParam = (params, name) ->
   for param in params
     if param.name is name
       return param
     if param.params
       found = findParam param.params, name
       return found if found
-  return</pre><hr class="item-seperator"></section><section id="generate_doc_generate" class=""><h2 class="class_method">generate()</h2><div><p>Generates documents</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L663">/lib/generate_doc.coffee:663</a>)</span><pre class="sourcecode prettyprint .linenums:663">generate = (paths, genopts) ->
+  return</pre><hr class="item-seperator"></section><section id="generate_doc_generate"><h2 class="class_method">generate()</h2><div><p>Generates documents</p>
+</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L621">/lib/generate_doc.coffee:621</a>)</span><pre class="sourcecode prettyprint .linenums:621">generate = (paths, genopts) ->
   result.project_title = genopts?.title or 'croquis-jsdoc'
 
   if external_types = genopts?['external-types']
@@ -160,22 +176,23 @@
 
   all_comments = []
   paths.forEach (path) ->
-    path = resolve "#{genopts.project_dir}/#{path}"
-    if fs.statSync(path).isDirectory()
-      list = walkdir.sync path
-    else
-      list = [path]
-      path = dirname path
-    list.forEach (file) ->
-      comments = getComments file, path
-      return if not comments?
+    base_path = path = resolve genopts.project_dir, path
+    base_path = dirname base_path while /[*?]/.test basename(base_path)
+    glob.sync(path).forEach (path) ->
+      if fs.statSync(path).isDirectory()
+        list = walkdir.sync path
+      else
+        list = [path]
+      list.forEach (file) ->
+        comments = getComments file, base_path
+        return if not comments?
 
-      file_count_read++
-      console.log file + ' is processed' if not genopts.quite
+        file_count_read++
+        console.log file + ' is processed' if not genopts.quite
 
-      file = file.replace new RegExp("^" + genopts.project_dir), ''
-      classifyComments file, comments
-      all_comments.push.apply all_comments, comments
+        file = file.replace new RegExp("^" + genopts.project_dir), ''
+        classifyComments file, comments
+        all_comments.push.apply all_comments, comments
 
   console.log 'Total ' + file_count_read + ' files processed'
 
@@ -194,7 +211,7 @@
   renderModules result, genopts
   renderFeatures result, genopts
   renderFiles result, genopts</pre><hr class="item-seperator"></section><section id="generate_doc_getComments" class="private"><h2 class="class_method">getComments(file)<span class="label label-private">private</span></h2><div><p>Returns list of comments of the given file</p>
-</div><div></div><h3>Parameters:</h3><ul><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>file</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='../classes/Comment.html#Comment'>Comment</a>&gt;} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L76">/lib/generate_doc.coffee:76</a>)</span><pre class="sourcecode prettyprint .linenums:76">getComments = (file, path) ->
+</div><div></div><h3>Parameters:</h3><ul><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>file</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='../classes/Comment.html#Comment'>Comment</a>&gt;} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L82">/lib/generate_doc.coffee:82</a>)</span><pre class="sourcecode prettyprint .linenums:82">getComments = (file, path) ->
   return if fs.statSync(file).isDirectory()
   content = fs.readFileSync(file, 'utf-8').trim()
   return if not content
@@ -209,7 +226,7 @@
     add_to_file = true
   else if /Page\.md$/.test file
     namespace = ''
-    file = file.substr 0, file.length-3
+    file = file.substr(0, file.length-3).replace(/[^A-Za-z0-9]*Page$/, '')
     file = file.replace /(.*)\//, (_, $1) ->
       namespace = $1
       return ''
@@ -224,7 +241,7 @@
       ]
     } ]
   else if /Guide\.md$/.test file
-    file = file.substr 0, file.length-8
+    file = file.substr(0, file.length-8).replace(/\//g, '.')
     result.guides.push
       name: file
       filename: 'guides/' + file
@@ -233,7 +250,7 @@
     file = file.substr 0, file.length-8
     namespace = ''
     file = file.replace /(.*)\//, (_, $1) ->
-      namespace = $1 + '.'
+      namespace = $1 + '/'
       return ''
     feature = ''
     content = content.replace /Feature: (.*)/, (_, $1) ->
@@ -242,29 +259,29 @@
     result.features.push
       name: namespace + file
       namespace: namespace
-      filename: 'features/' + namespace.replace('/', '.') + file
+      filename: 'features/' + namespace.replace(/\//g, '.') + file
       feature: feature
       content: content
 
   if add_to_file
     namespace = ''
     file = file.replace /(.*)\//, (_, $1) ->
-      namespace = $1 + '.'
+      namespace = $1 + '/'
       return ''
     result.files.push
       name: namespace + file
       namespace: namespace
-      filename: 'files/' + namespace.replace('/', '.') + file
+      filename: 'files/' + namespace.replace(/\//g, '.') + file
       content: content
 
   # filter out empty comments
   return comments?.filter (comment) ->
     return comment.description.full or comment.description.summary or comment.description.body or comment.tags?.length > 0</pre><hr class="item-seperator"></section><section id="generate_doc_makeNested" class="private"><h2 class="class_method">makeNested()<span class="label label-private">private</span></h2><div><p>Makes parameters(or returnprops) nested</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L202">/lib/generate_doc.coffee:202</a>)</span><pre class="sourcecode prettyprint .linenums:202">makeNested = (comment, targetName) ->
+</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L208">/lib/generate_doc.coffee:208</a>)</span><pre class="sourcecode prettyprint .linenums:208">makeNested = (comment, targetName) ->
   i = comment[targetName].length
   while i-->0
     param = comment[targetName][i]
-    if match = param.name.match /\[?(.*)\.([^\]]*)\]?/
+    if match = param.name.match /\[?([^=]*)\.([^\]]*)\]?/
       parentParam = findParam comment[targetName], match[1]
       if parentParam
         comment[targetName].splice i, 1
@@ -275,7 +292,7 @@
 <li>&quot;String&quot; -&gt; &quot;&lt;a href=&#39;reference url for String&#39;&gt;String&lt;/a&gt;&quot;</li>
 <li>&quot;Array&lt;Model&gt;&quot; -&gt; &quot;&lt;a href=&#39;reference url for Array&#39;&gt;Array&lt;/a&gt;&amp;lt;&lt;a href=&#39;internal url for Model&#39;&gt;Model&lt;/a&gt;&amp;gt;&quot;</li>
 </ul>
-</div><h3>Parameters:</h3><ul><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>rel_path</code><span> </span></li><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>type</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L46">/lib/generate_doc.coffee:46</a>)</span><pre class="sourcecode prettyprint .linenums:46">makeTypeLink = (rel_path, type) ->
+</div><h3>Parameters:</h3><ul><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>rel_path</code><span> </span></li><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>type</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L49">/lib/generate_doc.coffee:49</a>)</span><pre class="sourcecode prettyprint .linenums:49">makeTypeLink = (rel_path, type, place = '') ->
   return type if not type
   getlink = (type) ->
     if types[type]
@@ -285,13 +302,16 @@
       html_id = result.ids[type].html_id
       link = "#{rel_path}#{filename}##{html_id}"
     else
-      return makeMissingLink type
+      return makeMissingLink type, place
     return "<a href='#{link}'>#{type}</a>"
+  if res = type.match(/\[(.*)\]\((.*)\)/)
+    types[res[1]] = res[2]
+    return "<a href='#{res[2]}'>#{res[1]}</a>"
   if res = type.match /(.*?)<(.*)>/
     return "#{makeTypeLink rel_path, res[1]}&lt;#{makeTypeLink rel_path, res[2]}&gt;"
   else
     return getlink type</pre><hr class="item-seperator"></section><section id="generate_doc_processComments" class="private"><h2 class="class_method">processComments()<span class="label label-private">private</span></h2><div><p>Structuralizes comments</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L357">/lib/generate_doc.coffee:357</a>)</span><pre class="sourcecode prettyprint .linenums:357">processComments = (comments) ->
+</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L377">/lib/generate_doc.coffee:377</a>)</span><pre class="sourcecode prettyprint .linenums:377">processComments = (comments) ->
   comments.forEach (comment) ->
     desc = comment.description
     if desc
@@ -342,13 +362,15 @@
           for type, i in tag.types
             tag.types[i] = type
           comment.types = tag.types
+        when 'example'
+          comment.examples.push tag
         when 'override'
           if result.ids[tag.string] and result.ids[tag.string] isnt 'DUPLICATED ENTRY'
             comment.override = result.ids[tag.string]
           comment.override_link = tag.string
 
     if comment.ctx.type is 'class'
-      if /^class +\w+ +extends +(\w+)/.exec comment.code
+      if /^class +\w+ +extends +([\w\.]+)/.exec comment.code
         comment.extends.push RegExp.$1
         result.ids[RegExp.$1]?.subclasses.push comment.ctx.name
 
@@ -373,7 +395,7 @@
 <li>&#39;+&#39; name : addable</li>
 <li>&#39;-&#39; name : excludable</li>
 </ul>
-</div><h3>Parameters:</h3><ul><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><code>tag</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><span>given tag</span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L169">/lib/generate_doc.coffee:169</a>)</span><pre class="sourcecode prettyprint .linenums:169">processParamFlags = (tag) ->
+</div><h3>Parameters:</h3><ul><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><code>tag</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><span>given tag</span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L175">/lib/generate_doc.coffee:175</a>)</span><pre class="sourcecode prettyprint .linenums:175">processParamFlags = (tag) ->
   # is optional parameter?
   if /\[([^\[\]]+)\]/.exec tag.name
     tag.name = RegExp.$1
@@ -385,7 +407,7 @@
     tag.name = tag.name.substr(1)
     tag.excludable = true
   return tag</pre><hr class="item-seperator"></section><section id="generate_doc_result" class="private"><h2 class="class_method">result<span class="label label-private">private</span><span class="label label-property">property</span></h2><div><p>Parsed result</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L148">/lib/generate_doc.coffee:148</a>)</span><pre class="sourcecode prettyprint .linenums:148">result =
+</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L154">/lib/generate_doc.coffee:154</a>)</span><pre class="sourcecode prettyprint .linenums:154">result =
   project_title: ''
   ids: {}
   classes: {}
@@ -394,7 +416,7 @@
   restapis: {}
   features: []
   files: []</pre><hr class="item-seperator"></section><section id="generate_doc_types" class="private"><h2 class="class_method">types<span class="label label-private">private</span><span class="label label-property">property</span></h2><div><p>Links for pre-known types</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L17">/lib/generate_doc.coffee:17</a>)</span><pre class="sourcecode prettyprint .linenums:17">types =
+</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L19">/lib/generate_doc.coffee:19</a>)</span><pre class="sourcecode prettyprint .linenums:19">types =
   Object: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'
   Boolean: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean'
   String: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'

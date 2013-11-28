@@ -1,13 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CroJSDoc - generate_doc.coffee</title><link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-inverse navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid"><ul class="nav"><li class=""><a href="../index.html">Home</a></li><li class="dropdown "><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/AllCommands.html">AllCommands</a></li><li><a href="../guides/SpecifyingTypes.html">SpecifyingTypes</a></li></ul></li><li class=""><a href="../modules/generate_doc.html">Modules</a></li><li class=""><a href="../classes/CodeContext.html">Classes</a></li><li class="dropdown active"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files - generate_doc.coffee <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/comment.coffee.html">comment.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/generate_doc.coffee.html">generate_doc.coffee</a></li><li><a href="../files/bootstrap.js.bootstrap.js.html">bootstrap/js.bootstrap.js</a></li><li><a href="../files/bootstrap.js.bootstrap.min.js.html">bootstrap/js.bootstrap.min.js</a></li><li><a href="../files/dox.index.js.html">dox.index.js</a></li><li><a href="../files/dox.lib.api.js.html">dox/lib.api.js</a></li><li><a href="../files/dox.lib.dox.js.html">dox/lib.dox.js</a></li><li><a href="../files/dox.lib.dox_coffee.js.html">dox/lib.dox_coffee.js</a></li><li><a href="../files/dox.lib.utils.js.html">dox/lib.utils.js</a></li><li><a href="../files/google-code-prettify.lang-apollo.js.html">google-code-prettify.lang-apollo.js</a></li><li><a href="../files/google-code-prettify.lang-clj.js.html">google-code-prettify.lang-clj.js</a></li><li><a href="../files/google-code-prettify.lang-css.js.html">google-code-prettify.lang-css.js</a></li><li><a href="../files/google-code-prettify.lang-go.js.html">google-code-prettify.lang-go.js</a></li><li><a href="../files/google-code-prettify.lang-hs.js.html">google-code-prettify.lang-hs.js</a></li><li><a href="../files/google-code-prettify.lang-lisp.js.html">google-code-prettify.lang-lisp.js</a></li><li><a href="../files/google-code-prettify.lang-lua.js.html">google-code-prettify.lang-lua.js</a></li><li><a href="../files/google-code-prettify.lang-ml.js.html">google-code-prettify.lang-ml.js</a></li><li><a href="../files/google-code-prettify.lang-n.js.html">google-code-prettify.lang-n.js</a></li><li><a href="../files/google-code-prettify.lang-proto.js.html">google-code-prettify.lang-proto.js</a></li><li><a href="../files/google-code-prettify.lang-scala.js.html">google-code-prettify.lang-scala.js</a></li><li><a href="../files/google-code-prettify.lang-sql.js.html">google-code-prettify.lang-sql.js</a></li><li><a href="../files/google-code-prettify.lang-tex.js.html">google-code-prettify.lang-tex.js</a></li><li><a href="../files/google-code-prettify.lang-vb.js.html">google-code-prettify.lang-vb.js</a></li><li><a href="../files/google-code-prettify.lang-vhdl.js.html">google-code-prettify.lang-vhdl.js</a></li><li><a href="../files/google-code-prettify.lang-wiki.js.html">google-code-prettify.lang-wiki.js</a></li><li><a href="../files/google-code-prettify.lang-xq.js.html">google-code-prettify.lang-xq.js</a></li><li><a href="../files/google-code-prettify.lang-yaml.js.html">google-code-prettify.lang-yaml.js</a></li><li><a href="../files/google-code-prettify.prettify.js.html">google-code-prettify.prettify.js</a></li><li><a href="../files/tocify.jquery.tocify.min.js.html">tocify.jquery.tocify.min.js</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div></div><div class="container-fluid content"><div class="row-fluid"><div class="span3 visible-desktop"><div data-spy="affix" class="span3 sidebar"><ul class="nav nav-list cormo-sidenav"><li><a href="../files/comment.coffee.html">comment.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li class="active"><a href="../files/generate_doc.coffee.html">generate_doc.coffee</a></li><li class="nav-header">bootstrap/js</li><li><a href="../files/bootstrap.js.bootstrap.js.html">bootstrap.js</a></li><li><a href="../files/bootstrap.js.bootstrap.min.js.html">bootstrap.min.js</a></li><li class="nav-header">dox</li><li><a href="../files/dox.index.js.html">index.js</a></li><li class="nav-header">dox/lib</li><li><a href="../files/dox.lib.api.js.html">api.js</a></li><li><a href="../files/dox.lib.dox.js.html">dox.js</a></li><li><a href="../files/dox.lib.dox_coffee.js.html">dox_coffee.js</a></li><li><a href="../files/dox.lib.utils.js.html">utils.js</a></li><li class="nav-header">google-code-prettify</li><li><a href="../files/google-code-prettify.lang-apollo.js.html">lang-apollo.js</a></li><li><a href="../files/google-code-prettify.lang-clj.js.html">lang-clj.js</a></li><li><a href="../files/google-code-prettify.lang-css.js.html">lang-css.js</a></li><li><a href="../files/google-code-prettify.lang-go.js.html">lang-go.js</a></li><li><a href="../files/google-code-prettify.lang-hs.js.html">lang-hs.js</a></li><li><a href="../files/google-code-prettify.lang-lisp.js.html">lang-lisp.js</a></li><li><a href="../files/google-code-prettify.lang-lua.js.html">lang-lua.js</a></li><li><a href="../files/google-code-prettify.lang-ml.js.html">lang-ml.js</a></li><li><a href="../files/google-code-prettify.lang-n.js.html">lang-n.js</a></li><li><a href="../files/google-code-prettify.lang-proto.js.html">lang-proto.js</a></li><li><a href="../files/google-code-prettify.lang-scala.js.html">lang-scala.js</a></li><li><a href="../files/google-code-prettify.lang-sql.js.html">lang-sql.js</a></li><li><a href="../files/google-code-prettify.lang-tex.js.html">lang-tex.js</a></li><li><a href="../files/google-code-prettify.lang-vb.js.html">lang-vb.js</a></li><li><a href="../files/google-code-prettify.lang-vhdl.js.html">lang-vhdl.js</a></li><li><a href="../files/google-code-prettify.lang-wiki.js.html">lang-wiki.js</a></li><li><a href="../files/google-code-prettify.lang-xq.js.html">lang-xq.js</a></li><li><a href="../files/google-code-prettify.lang-yaml.js.html">lang-yaml.js</a></li><li><a href="../files/google-code-prettify.prettify.js.html">prettify.js</a></li><li class="nav-header">tocify</li><li><a href="../files/tocify.jquery.tocify.min.js.html">jquery.tocify.min.js</a></li></ul></div></div><div class="span9"><section><h1>generate_doc.coffee</h1></section><pre class="prettyprint">##
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CroJSDoc - generate_doc.coffee</title><script>if (location.protocol.match(/^http/) && location.pathname.match('\.html') === null && location.pathname.slice(-1) !== '/') {
+  location.href = location.href + '/';
+}</script><link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-inverse navbar-fixed-top"><div class="navbar-inner"><div class="container-fluid"><ul class="nav"><li><a href="../index.html">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/AllCommands.html">AllCommands</a></li><li><a href="../guides/SpecifyingTypes.html">SpecifyingTypes</a></li></ul></li><li><a href="../modules/generate_doc.html">Modules</a></li><li><a href="../classes/CodeContext.html">Classes</a></li><li class="dropdown active"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files - generate_doc.coffee <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/comment.coffee.html">comment.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/generate_doc.coffee.html">generate_doc.coffee</a></li><li><a href="../files/bootstrap.js.bootstrap.js.html">bootstrap/js/bootstrap.js</a></li><li><a href="../files/bootstrap.js.bootstrap.min.js.html">bootstrap/js/bootstrap.min.js</a></li><li><a href="../files/dox.index.js.html">dox/index.js</a></li><li><a href="../files/dox.lib.api.js.html">dox/lib/api.js</a></li><li><a href="../files/dox.lib.dox.js.html">dox/lib/dox.js</a></li><li><a href="../files/dox.lib.dox_coffee.js.html">dox/lib/dox_coffee.js</a></li><li><a href="../files/dox.lib.utils.js.html">dox/lib/utils.js</a></li><li><a href="../files/google-code-prettify.lang-apollo.js.html">google-code-prettify/lang-apollo.js</a></li><li><a href="../files/google-code-prettify.lang-clj.js.html">google-code-prettify/lang-clj.js</a></li><li><a href="../files/google-code-prettify.lang-css.js.html">google-code-prettify/lang-css.js</a></li><li><a href="../files/google-code-prettify.lang-go.js.html">google-code-prettify/lang-go.js</a></li><li><a href="../files/google-code-prettify.lang-hs.js.html">google-code-prettify/lang-hs.js</a></li><li><a href="../files/google-code-prettify.lang-lisp.js.html">google-code-prettify/lang-lisp.js</a></li><li><a href="../files/google-code-prettify.lang-lua.js.html">google-code-prettify/lang-lua.js</a></li><li><a href="../files/google-code-prettify.lang-ml.js.html">google-code-prettify/lang-ml.js</a></li><li><a href="../files/google-code-prettify.lang-n.js.html">google-code-prettify/lang-n.js</a></li><li><a href="../files/google-code-prettify.lang-proto.js.html">google-code-prettify/lang-proto.js</a></li><li><a href="../files/google-code-prettify.lang-scala.js.html">google-code-prettify/lang-scala.js</a></li><li><a href="../files/google-code-prettify.lang-sql.js.html">google-code-prettify/lang-sql.js</a></li><li><a href="../files/google-code-prettify.lang-tex.js.html">google-code-prettify/lang-tex.js</a></li><li><a href="../files/google-code-prettify.lang-vb.js.html">google-code-prettify/lang-vb.js</a></li><li><a href="../files/google-code-prettify.lang-vhdl.js.html">google-code-prettify/lang-vhdl.js</a></li><li><a href="../files/google-code-prettify.lang-wiki.js.html">google-code-prettify/lang-wiki.js</a></li><li><a href="../files/google-code-prettify.lang-xq.js.html">google-code-prettify/lang-xq.js</a></li><li><a href="../files/google-code-prettify.lang-yaml.js.html">google-code-prettify/lang-yaml.js</a></li><li><a href="../files/google-code-prettify.prettify.js.html">google-code-prettify/prettify.js</a></li><li><a href="../files/tocify.jquery.tocify.min.js.html">tocify/jquery.tocify.min.js</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div></div><div class="container-fluid content"><div class="row-fluid"><div class="span3 visible-desktop"><div data-spy="affix" class="span3 sidebar"><ul class="nav nav-list cormo-sidenav"><li><a href="../files/comment.coffee.html">comment.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li class="active"><a href="../files/generate_doc.coffee.html">generate_doc.coffee</a></li><li class="nav-header">bootstrap/js</li><li><a href="../files/bootstrap.js.bootstrap.js.html">bootstrap.js</a></li><li><a href="../files/bootstrap.js.bootstrap.min.js.html">bootstrap.min.js</a></li><li class="nav-header">dox</li><li><a href="../files/dox.index.js.html">index.js</a></li><li class="nav-header">dox/lib</li><li><a href="../files/dox.lib.api.js.html">api.js</a></li><li><a href="../files/dox.lib.dox.js.html">dox.js</a></li><li><a href="../files/dox.lib.dox_coffee.js.html">dox_coffee.js</a></li><li><a href="../files/dox.lib.utils.js.html">utils.js</a></li><li class="nav-header">google-code-prettify</li><li><a href="../files/google-code-prettify.lang-apollo.js.html">lang-apollo.js</a></li><li><a href="../files/google-code-prettify.lang-clj.js.html">lang-clj.js</a></li><li><a href="../files/google-code-prettify.lang-css.js.html">lang-css.js</a></li><li><a href="../files/google-code-prettify.lang-go.js.html">lang-go.js</a></li><li><a href="../files/google-code-prettify.lang-hs.js.html">lang-hs.js</a></li><li><a href="../files/google-code-prettify.lang-lisp.js.html">lang-lisp.js</a></li><li><a href="../files/google-code-prettify.lang-lua.js.html">lang-lua.js</a></li><li><a href="../files/google-code-prettify.lang-ml.js.html">lang-ml.js</a></li><li><a href="../files/google-code-prettify.lang-n.js.html">lang-n.js</a></li><li><a href="../files/google-code-prettify.lang-proto.js.html">lang-proto.js</a></li><li><a href="../files/google-code-prettify.lang-scala.js.html">lang-scala.js</a></li><li><a href="../files/google-code-prettify.lang-sql.js.html">lang-sql.js</a></li><li><a href="../files/google-code-prettify.lang-tex.js.html">lang-tex.js</a></li><li><a href="../files/google-code-prettify.lang-vb.js.html">lang-vb.js</a></li><li><a href="../files/google-code-prettify.lang-vhdl.js.html">lang-vhdl.js</a></li><li><a href="../files/google-code-prettify.lang-wiki.js.html">lang-wiki.js</a></li><li><a href="../files/google-code-prettify.lang-xq.js.html">lang-xq.js</a></li><li><a href="../files/google-code-prettify.lang-yaml.js.html">lang-yaml.js</a></li><li><a href="../files/google-code-prettify.prettify.js.html">prettify.js</a></li><li class="nav-header">tocify</li><li><a href="../files/tocify.jquery.tocify.min.js.html">jquery.tocify.min.js</a></li></ul></div></div><div class="span9"><section><h1>generate_doc.coffee</h1></section><pre class="prettyprint">##
 # @module generate_doc
 
-dox = require './dox'
 fs = require 'fs'
+{basename,dirname,resolve} = require 'path'
+
+glob = require 'glob'
 jade = require 'jade'
-walkdir = require 'walkdir'
 markdown = require 'marked'
-dirname = require('path').dirname
-resolve = require('path').resolve
+walkdir = require 'walkdir'
+
+dox = require './dox'
 
 ##
 # Links for pre-known types
@@ -26,24 +30,25 @@ types =
   Error: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error'
   undefined: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/undefined'
 
-makeMissingLink = (type) -&gt;
-  if result.ids[type]
-    console.log &quot;'#{type}' link is ambiguous&quot;
+makeMissingLink = (type, place = '') -&gt;
+  txt = if result.ids[type]
+    &quot;'#{type}' link is ambiguous&quot;
   else
-    console.log &quot;'#{type}' link does not exist&quot;
+    &quot;'#{type}' link does not exist&quot;
+  console.log txt + &quot; #{place}&quot;
   return &quot;&lt;span class='missing-link'&gt;#{type}&lt;/span&gt;&quot;
 
 ##
 # Makes links for given type
 #
-# * &quot;String&quot; -&gt; &quot;&lt;a href='reference url for String'&gt;String&lt;/a&gt;&quot;
-# * &quot;Array&lt;Model&gt;&quot; -&gt; &quot;&lt;a href='reference url for Array'&gt;Array&lt;/a&gt;&amp;lt;&lt;a href='internal url for Model'&gt;Model&lt;/a&gt;&amp;gt;&quot;
+# * &quot;String&quot; -&amp;gt; &quot;&amp;lt;a href='reference url for String'&amp;gt;String&amp;lt;/a&amp;gt;&quot;
+# * &quot;Array&amp;lt;Model&amp;gt;&quot; -&amp;gt; &quot;&amp;lt;a href='reference url for Array'&amp;gt;Array&amp;lt;/a&amp;gt;&amp;amp;lt;&amp;lt;a href='internal url for Model'&amp;gt;Model&amp;lt;/a&amp;gt;&amp;amp;gt;&quot;
 # @private
 # @memberOf generate_doc
 # @param {String} rel_path
 # @param {String} type
 # @return {String}
-makeTypeLink = (rel_path, type) -&gt;
+makeTypeLink = (rel_path, type, place = '') -&gt;
   return type if not type
   getlink = (type) -&gt;
     if types[type]
@@ -53,10 +58,13 @@ makeTypeLink = (rel_path, type) -&gt;
       html_id = result.ids[type].html_id
       link = &quot;#{rel_path}#{filename}##{html_id}&quot;
     else
-      return makeMissingLink type
+      return makeMissingLink type, place
     return &quot;&lt;a href='#{link}'&gt;#{type}&lt;/a&gt;&quot;
+  if res = type.match(/\[(.*)\]\((.*)\)/)
+    types[res[1]] = res[2]
+    return &quot;&lt;a href='#{res[2]}'&gt;#{res[1]}&lt;/a&gt;&quot;
   if res = type.match /(.*?)&lt;(.*)&gt;/
-    return &quot;#{makeTypeLink rel_path, res[1]}&lt;#{makeTypeLink rel_path, res[2]}&gt;&quot;
+    return &quot;#{makeTypeLink rel_path, res[1]}&amp;lt;#{makeTypeLink rel_path, res[2]}&amp;gt;&quot;
   else
     return getlink type
 
@@ -88,7 +96,7 @@ getComments = (file, path) -&gt;
     add_to_file = true
   else if /Page\.md$/.test file
     namespace = ''
-    file = file.substr 0, file.length-3
+    file = file.substr(0, file.length-3).replace(/[^A-Za-z0-9]*Page$/, '')
     file = file.replace /(.*)\//, (_, $1) -&gt;
       namespace = $1
       return ''
@@ -103,7 +111,7 @@ getComments = (file, path) -&gt;
       ]
     } ]
   else if /Guide\.md$/.test file
-    file = file.substr 0, file.length-8
+    file = file.substr(0, file.length-8).replace(/\//g, '.')
     result.guides.push
       name: file
       filename: 'guides/' + file
@@ -112,7 +120,7 @@ getComments = (file, path) -&gt;
     file = file.substr 0, file.length-8
     namespace = ''
     file = file.replace /(.*)\//, (_, $1) -&gt;
-      namespace = $1 + '.'
+      namespace = $1 + '/'
       return ''
     feature = ''
     content = content.replace /Feature: (.*)/, (_, $1) -&gt;
@@ -121,19 +129,19 @@ getComments = (file, path) -&gt;
     result.features.push
       name: namespace + file
       namespace: namespace
-      filename: 'features/' + namespace.replace('/', '.') + file
+      filename: 'features/' + namespace.replace(/\//g, '.') + file
       feature: feature
       content: content
 
   if add_to_file
     namespace = ''
     file = file.replace /(.*)\//, (_, $1) -&gt;
-      namespace = $1 + '.'
+      namespace = $1 + '/'
       return ''
     result.files.push
       name: namespace + file
       namespace: namespace
-      filename: 'files/' + namespace.replace('/', '.') + file
+      filename: 'files/' + namespace.replace(/\//g, '.') + file
       content: content
 
   # filter out empty comments
@@ -203,7 +211,7 @@ makeNested = (comment, targetName) -&gt;
   i = comment[targetName].length
   while i--&gt;0
     param = comment[targetName][i]
-    if match = param.name.match /\[?(.*)\.([^\]]*)\]?/
+    if match = param.name.match /\[?([^=]*)\.([^\]]*)\]?/
       parentParam = findParam comment[targetName], match[1]
       if parentParam
         comment[targetName].splice i, 1
@@ -242,6 +250,7 @@ applyMarkdown = (str) -&gt;
 # @memberOf generate_doc
 classifyComments = (file, comments) -&gt;
   current_class = undefined
+  current_module = undefined
 
   comments.forEach (comment) -&gt;
     comment.defined_in = file
@@ -257,6 +266,7 @@ classifyComments = (file, comments) -&gt;
     comment.uses = []
     comment.usedbys = []
     comment.properties = []
+    comment.examples = []
 
     if comment.ctx.type is 'property' or comment.ctx.type is 'method'
       id = comment.ctx.string.replace('()', '')
@@ -273,7 +283,12 @@ classifyComments = (file, comments) -&gt;
         comment.static = true
         comment.ctx.class_name = comment.ctx.receiver
 
-    for tag in comment.tags
+    last = 0
+    for tag, i in comment.tags
+      if tag.type is ''
+        comment.tags[last].string += &quot;\n#{tag.string}&quot;
+        continue
+      last = i
       switch tag.type
         when 'page', 'restapi', 'class'
           comment.ctx.type = tag.type
@@ -296,8 +311,8 @@ classifyComments = (file, comments) -&gt;
             comment.ctx.class_name = tag.parent
         when 'namespace'
           comment.namespace = if tag.string then tag.string + '.' else ''
-        when 'property'
-          comment.ctx.type = 'property'
+        when 'property', 'method'
+          comment.ctx.type = tag.type
           comment.ctx.name = tag.string
         when 'static'
           comment.static = true
@@ -305,6 +320,8 @@ classifyComments = (file, comments) -&gt;
           comment.isPrivate = true
         when 'abstract'
           comment.abstract = true
+        when 'async'
+          comment.async = true
         when 'param', 'return', 'returnprop', 'throws', 'resterror', 'see'
           , 'extends', 'todo', 'type', 'api', 'uses', 'override'
         else
@@ -321,9 +338,14 @@ classifyComments = (file, comments) -&gt;
 
     if comment.ctx.type is 'class'
       current_class = comment
+      if comment.is_module
+        current_module = comment
 
-    if (comment.ctx.type is 'property' or comment.ctx.type is 'method') and not comment.namespace and current_class
-      comment.namespace = current_class.namespace
+    if (comment.ctx.type is 'property' or comment.ctx.type is 'method') and not comment.namespace
+      if current_class
+        comment.namespace = current_class.namespace
+      if current_module and not comment.ctx.class_name
+        comment.ctx.class_name = current_module.ctx.name
 
     if id
       if result.ids.hasOwnProperty id
@@ -405,13 +427,15 @@ processComments = (comments) -&gt;
           for type, i in tag.types
             tag.types[i] = type
           comment.types = tag.types
+        when 'example'
+          comment.examples.push tag
         when 'override'
           if result.ids[tag.string] and result.ids[tag.string] isnt 'DUPLICATED ENTRY'
             comment.override = result.ids[tag.string]
           comment.override_link = tag.string
 
     if comment.ctx.type is 'class'
-      if /^class +\w+ +extends +(\w+)/.exec comment.code
+      if /^class +\w+ +extends +([\w\.]+)/.exec comment.code
         comment.extends.push RegExp.$1
         result.ids[RegExp.$1]?.subclasses.push comment.ctx.name
 
@@ -478,8 +502,22 @@ copyResources = (source, target) -&gt;
   exec = require('child_process').exec
   exec &quot;mkdir #{target} ; cp -a #{source}/bootstrap #{source}/google-code-prettify #{source}/tocify #{source}/style.css #{target}&quot;
 
+render = (result, genopts, options, template, output) -&gt;
+  options.result = result
+  options.makeTypeLink = makeTypeLink if not options.makeTypeLink
+  options.makeSeeLink = makeSeeLink
+  options.convertLink = convertLink
+  options.genopts = genopts
+  options.cache = true
+  jade.renderFile &quot;#{genopts.template_dir}/#{template}.jade&quot;, options, (error, result) -&gt;
+    return console.error error.stack if error
+    output_file = &quot;#{genopts.doc_dir}/#{output}.html&quot;
+    fs.writeFile output_file, result, (error) -&gt;
+      return console.error 'failed to create '+output_file if error
+      console.log output_file + ' is created' if not genopts.quite
+
 renderReadme = (result, genopts) -&gt;
-  fs.readFile &quot;#{genopts.project_dir}/README.md&quot;, 'utf-8', (error, content) -&gt;
+  fs.readFile &quot;#{genopts.readme || genopts.project_dir}/README.md&quot;, 'utf-8', (error, content) -&gt;
     if content
       content = applyMarkdown content
     options =
@@ -487,17 +525,7 @@ renderReadme = (result, genopts) -&gt;
       name: 'README'
       content: content
       type: 'home'
-      result: result
-      makeTypeLink: makeTypeLink
-      makeSeeLink: makeSeeLink
-      convertLink: convertLink
-      genopts: genopts
-    jade.renderFile &quot;#{genopts.template_dir}/extra.jade&quot;, options, (error, result) -&gt;
-      return console.error error.stack if error
-      output_file = &quot;#{genopts.doc_dir}/index.html&quot;
-      fs.writeFile output_file, result, (error) -&gt;
-        return console.error 'failed to create '+output_file if error
-        console.log output_file + ' is created' if not genopts.quite
+    render result, genopts, options, 'extra', 'index'
 
 renderGuides = (result, genopts) -&gt;
   return if result.guides.length is 0
@@ -513,17 +541,7 @@ renderGuides = (result, genopts) -&gt;
       name: guide.name
       content: content
       type: 'guides'
-      result: result
-      makeTypeLink: makeTypeLink
-      makeSeeLink: makeSeeLink
-      convertLink: convertLink
-      genopts: genopts
-    jade.renderFile &quot;#{genopts.template_dir}/extra.jade&quot;, options, (error, result) -&gt;
-      return console.error error.stack if error
-      output_file = &quot;#{genopts.doc_dir}/#{guide.filename}.html&quot;
-      fs.writeFile output_file, result, (error) -&gt;
-        return console.error 'failed to create '+output_file if error
-        console.log output_file + ' is created' if not genopts.quite
+    render result, genopts, options, 'extra', guide.filename
 
 renderPages = (result, genopts) -&gt;
   if result.pages.length &gt; 0
@@ -531,17 +549,7 @@ renderPages = (result, genopts) -&gt;
       rel_path: './'
       name: 'Pages'
       type: 'pages'
-      result: result
-      makeTypeLink: makeTypeLink
-      makeSeeLink: makeSeeLink
-      convertLink: convertLink
-      genopts: genopts
-    jade.renderFile &quot;#{genopts.template_dir}/pages.jade&quot;, options, (error, result) -&gt;
-      return console.error error.stack if error
-      output_file = &quot;#{genopts.doc_dir}/pages.html&quot;
-      fs.writeFile output_file, result, (error) -&gt;
-        return console.error 'failed to create '+output_file if error
-        console.log output_file + ' is created' if not genopts.quite
+    render result, genopts, options, 'pages', 'pages'
 
 renderRESTApis = (result, genopts) -&gt;
   if result.restapis.length &gt; 0
@@ -549,17 +557,7 @@ renderRESTApis = (result, genopts) -&gt;
       rel_path: './'
       name: 'REST APIs'
       type: 'restapis'
-      result: result
-      makeTypeLink: makeTypeLink
-      makeSeeLink: makeSeeLink
-      convertLink: convertLink
-      genopts: genopts
-    jade.renderFile &quot;#{genopts.template_dir}/restapis.jade&quot;, options, (error, result) -&gt;
-      return console.error error.stack if error
-      output_file = &quot;#{genopts.doc_dir}/restapis.html&quot;
-      fs.writeFile output_file, result, (error) -&gt;
-        return console.error 'failed to create '+output_file if error
-        console.log output_file + ' is created' if not genopts.quite
+    render result, genopts, options, 'restapis', 'restapis'
 
 renderClasses = (result, genopts) -&gt;
   return if result.classes.length is 0
@@ -574,17 +572,9 @@ renderClasses = (result, genopts) -&gt;
       klass: klass
       properties: properties
       type: 'classes'
-      result: result
-      makeTypeLink: makeTypeLink
-      makeSeeLink: makeSeeLink
-      convertLink: convertLink
-      genopts: genopts
-    jade.renderFile &quot;#{genopts.template_dir}/class.jade&quot;, options, (error, result) -&gt;
-      return console.error error.stack if error
-      output_file = &quot;#{genopts.doc_dir}/#{klass.filename}.html&quot;
-      fs.writeFile output_file, result, (error) -&gt;
-        return console.error 'failed to create '+output_file if error
-        console.log output_file + ' is created' if not genopts.quite
+      makeTypeLink: (path, type) -&gt;
+        makeTypeLink path, type, &quot;(in #{klass.defined_in})&quot;
+    render result, genopts, options, 'class', klass.filename
 
 renderModules = (result, genopts) -&gt;
   return if result.modules.length is 0
@@ -599,17 +589,7 @@ renderModules = (result, genopts) -&gt;
       module: module
       properties: properties
       type: 'modules'
-      result: result
-      makeTypeLink: makeTypeLink
-      makeSeeLink: makeSeeLink
-      convertLink: convertLink
-      genopts: genopts
-    jade.renderFile &quot;#{genopts.template_dir}/module.jade&quot;, options, (error, result) -&gt;
-      return console.error error.stack if error
-      output_file = &quot;#{genopts.doc_dir}/#{module.filename}.html&quot;
-      fs.writeFile output_file, result, (error) -&gt;
-        return console.error 'failed to create '+output_file if error
-        console.log output_file + ' is created' if not genopts.quite
+    render result, genopts, options, 'module', module.filename
 
 renderFeatures = (result, genopts) -&gt;
   return if result.features.length is 0
@@ -622,17 +602,7 @@ renderFeatures = (result, genopts) -&gt;
       name: feature.name
       feature: feature
       type: 'features'
-      result: result
-      makeTypeLink: makeTypeLink
-      makeSeeLink: makeSeeLink
-      convertLink: convertLink
-      genopts: genopts
-    jade.renderFile &quot;#{genopts.template_dir}/feature.jade&quot;, options, (error, result) -&gt;
-      return console.error error.stack if error
-      output_file = &quot;#{genopts.doc_dir}/#{feature.filename}.html&quot;
-      fs.writeFile output_file, result, (error) -&gt;
-        return console.error 'failed to create '+output_file if error
-        console.log output_file + ' is created' if not genopts.quite
+    render result, genopts, options, 'feature', feature.filename
 
 renderFiles = (result, genopts) -&gt;
   return if result.files.length is 0
@@ -645,17 +615,7 @@ renderFiles = (result, genopts) -&gt;
       name: file.name
       file: file
       type: 'files'
-      result: result
-      makeTypeLink: makeTypeLink
-      makeSeeLink: makeSeeLink
-      convertLink: convertLink
-      genopts: genopts
-    jade.renderFile &quot;#{genopts.template_dir}/file.jade&quot;, options, (error, result) -&gt;
-      return console.error error.stack if error
-      output_file = &quot;#{genopts.doc_dir}/#{file.filename}.html&quot;
-      fs.writeFile output_file, result, (error) -&gt;
-        return console.error 'failed to create '+output_file if error
-        console.log output_file + ' is created' if not genopts.quite
+    render result, genopts, options, 'file', file.filename
 
 ##
 # Generates documents
@@ -689,22 +649,23 @@ generate = (paths, genopts) -&gt;
 
   all_comments = []
   paths.forEach (path) -&gt;
-    path = resolve &quot;#{genopts.project_dir}/#{path}&quot;
-    if fs.statSync(path).isDirectory()
-      list = walkdir.sync path
-    else
-      list = [path]
-      path = dirname path
-    list.forEach (file) -&gt;
-      comments = getComments file, path
-      return if not comments?
+    base_path = path = resolve genopts.project_dir, path
+    base_path = dirname base_path while /[*?]/.test basename(base_path)
+    glob.sync(path).forEach (path) -&gt;
+      if fs.statSync(path).isDirectory()
+        list = walkdir.sync path
+      else
+        list = [path]
+      list.forEach (file) -&gt;
+        comments = getComments file, base_path
+        return if not comments?
 
-      file_count_read++
-      console.log file + ' is processed' if not genopts.quite
+        file_count_read++
+        console.log file + ' is processed' if not genopts.quite
 
-      file = file.replace new RegExp(&quot;^&quot; + genopts.project_dir), ''
-      classifyComments file, comments
-      all_comments.push.apply all_comments, comments
+        file = file.replace new RegExp(&quot;^&quot; + genopts.project_dir), ''
+        classifyComments file, comments
+        all_comments.push.apply all_comments, comments
 
   console.log 'Total ' + file_count_read + ' files processed'
 
