@@ -139,7 +139,7 @@
     else
       return makeMissingLink $1
   return str</pre><hr class="item-seperator"></section><section id="generate_doc_findParam" class="private"><h2 class="class_method">findParam(params, name)<span class="label label-private">private</span></h2><div><p>Finds a parameter in the list</p>
-</div><div></div><h3>Parameters:</h3><ul><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>&gt;} </span><code>params</code><span> </span></li><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>name</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L195">/lib/generate_doc.coffee:195</a>)</span><pre class="sourcecode prettyprint .linenums:195">findParam = (params, name) ->
+</div><div></div><h3>Parameters:</h3><ul><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>&gt;} </span><code>params</code><span> </span></li><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>name</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L195">/lib/generate_doc.coffee:195</a>)</span><pre class="sourcecode prettyprint .linenums:195">findParam = (params, name) ->
   for param in params
     if param.name is name
       return param
@@ -147,7 +147,7 @@
       found = findParam param.params, name
       return found if found
   return</pre><hr class="item-seperator"></section><section id="generate_doc_generate"><h2 class="class_method">generate()</h2><div><p>Generates documents</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L621">/lib/generate_doc.coffee:621</a>)</span><pre class="sourcecode prettyprint .linenums:621">generate = (paths, genopts) ->
+</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L612">/lib/generate_doc.coffee:612</a>)</span><pre class="sourcecode prettyprint .linenums:612">generate = (paths, genopts) ->
   result.project_title = genopts?.title or 'croquis-jsdoc'
 
   if external_types = genopts?['external-types']
@@ -202,16 +202,16 @@
     result.files = []
   refineResult result
 
-  copyResources __dirname, genopts.doc_dir
-  renderReadme result, genopts
-  renderGuides result, genopts
-  renderPages result, genopts
-  renderRESTApis result, genopts
-  renderClasses result, genopts
-  renderModules result, genopts
-  renderFeatures result, genopts
-  renderFiles result, genopts</pre><hr class="item-seperator"></section><section id="generate_doc_getComments" class="private"><h2 class="class_method">getComments(file)<span class="label label-private">private</span></h2><div><p>Returns list of comments of the given file</p>
-</div><div></div><h3>Parameters:</h3><ul><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>file</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='../classes/Comment.html#Comment'>Comment</a>&gt;} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L82">/lib/generate_doc.coffee:82</a>)</span><pre class="sourcecode prettyprint .linenums:82">getComments = (file, path) ->
+  copyResources __dirname, genopts.doc_dir, ->
+    renderReadme result, genopts
+    renderGuides result, genopts
+    renderPages result, genopts
+    renderRESTApis result, genopts
+    renderClasses result, genopts
+    renderModules result, genopts
+    renderFeatures result, genopts
+    renderFiles result, genopts</pre><hr class="item-seperator"></section><section id="generate_doc_getComments" class="private"><h2 class="class_method">getComments(file)<span class="label label-private">private</span></h2><div><p>Returns list of comments of the given file</p>
+</div><div></div><h3>Parameters:</h3><ul><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>file</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='../classes/Comment.html#Comment'>Comment</a>&gt;} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L82">/lib/generate_doc.coffee:82</a>)</span><pre class="sourcecode prettyprint .linenums:82">getComments = (file, path) ->
   return if fs.statSync(file).isDirectory()
   content = fs.readFileSync(file, 'utf-8').trim()
   return if not content
@@ -292,7 +292,7 @@
 <li>&quot;String&quot; -&gt; &quot;&lt;a href=&#39;reference url for String&#39;&gt;String&lt;/a&gt;&quot;</li>
 <li>&quot;Array&lt;Model&gt;&quot; -&gt; &quot;&lt;a href=&#39;reference url for Array&#39;&gt;Array&lt;/a&gt;&amp;lt;&lt;a href=&#39;internal url for Model&#39;&gt;Model&lt;/a&gt;&amp;gt;&quot;</li>
 </ul>
-</div><h3>Parameters:</h3><ul><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>rel_path</code><span> </span></li><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>type</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L49">/lib/generate_doc.coffee:49</a>)</span><pre class="sourcecode prettyprint .linenums:49">makeTypeLink = (rel_path, type, place = '') ->
+</div><h3>Parameters:</h3><ul><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>rel_path</code><span> </span></li><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>type</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L49">/lib/generate_doc.coffee:49</a>)</span><pre class="sourcecode prettyprint .linenums:49">makeTypeLink = (rel_path, type, place = '') ->
   return type if not type
   getlink = (type) ->
     if types[type]
@@ -395,7 +395,7 @@
 <li>&#39;+&#39; name : addable</li>
 <li>&#39;-&#39; name : excludable</li>
 </ul>
-</div><h3>Parameters:</h3><ul><li> <span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><code>tag</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><span>given tag</span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L175">/lib/generate_doc.coffee:175</a>)</span><pre class="sourcecode prettyprint .linenums:175">processParamFlags = (tag) ->
+</div><h3>Parameters:</h3><ul><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><code>tag</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><span>given tag</span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//lib/generate_doc.coffee#L175">/lib/generate_doc.coffee:175</a>)</span><pre class="sourcecode prettyprint .linenums:175">processParamFlags = (tag) ->
   # is optional parameter?
   if /\[([^\[\]]+)\]/.exec tag.name
     tag.name = RegExp.$1
