@@ -1,0 +1,181 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CroJSDoc - Renderer</title><script>if (location.protocol.match(/^http/) && location.pathname.match('\.html') === null && location.pathname.slice(-1) !== '/') {
+  location.href = location.href + '/';
+}</script><link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><ul class="nav navbar-nav"><li><a href="../index.html">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/AllCommands.html">AllCommands</a></li><li><a href="../guides/SpecifyingTypes.html">SpecifyingTypes</a></li></ul></li><li><a href="../modules/collect.html">Modules</a></li><li class="active"><a href="../classes/CodeContext.html">Classes - Renderer</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/comment.coffee.html">comment.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div><div class="container-fluid content"><div class="row"><div data-spy="affix" class="hidden-xs sidebar col-sm-3"><div class="cormo-sidenav"><div class="panel panel-default"><ul class="nav nav-pills nav-stacked"><li><a href="../classes/CodeContext.html">CodeContext</a></li><li><a href="../classes/Collector.html">Collector</a></li><li><a href="../classes/Comment.html">Comment</a></li><li class="active"><a href="#Renderer">Renderer</a></li><li class="cormo-class-property private"><a href="#Renderer__convertLink">convertLink<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Renderer__copyResources">copyResources<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Renderer__makeMissingLink">makeMissingLink<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Renderer__makeSeeLink">makeSeeLink<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Renderer__makeTypeLink">makeTypeLink<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Renderer__renderClasses">renderClasses<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Renderer__renderFeatures">renderFeatures<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Renderer__renderFiles">renderFiles<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Renderer__renderGuides">renderGuides<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Renderer__renderModules">renderModules<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Renderer__renderOne">renderOne<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Renderer__renderPages">renderPages<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Renderer__renderRESTApis">renderRESTApis<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Renderer__renderReadme">renderReadme<span class="label label-private">private</span></a></li><li class="cormo-class-property"><a href="#Renderer__run">run</a></li><li><a href="../classes/Tag.html">Tag</a></li></ul></div><div class="panel panel-default"><div class="panel-heading">example</div><ul class="nav nav-pills nav-stacked"><li><a href="../classes/example.ExampleCoffee.html">ExampleCoffee</a></li><li><a href="../classes/example.ExampleJS.html">ExampleJS</a></li></ul></div></div></div><div class="col-sm-9 col-sm-offset-3"><section id="Renderer"><h1 class="class_title">Renderer</h1><div><p>Renderer</p>
+</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L11">/src/render.coffee:11</a>)</span><pre class="sourcecode prettyprint .linenums:11">class Renderer
+  constructor: (@result, @options) ->
+    @output_dir = resolve options.project_dir, options.output or 'doc'
+
+    theme = 'default'
+    @resources_dir = resolve __dirname, '../themes', theme, 'resources'
+    @templates_dir = resolve __dirname, '../themes', theme, 'templates'
+
+    # Links for pre-known types
+    @types =
+      Object: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'
+      Boolean: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean'
+      String: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'
+      Array: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'
+      Number: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number'
+      Date: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date'
+      Function: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function'
+      RegExp: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp'
+      Error: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error'
+      undefined: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/undefined'
+
+    if external_types = options['external-types']
+      if typeof external_types is 'string'
+        try
+          content = fs.readFileSync(external_types, 'utf-8').trim()
+          try
+            external_types = JSON.parse content
+          catch e
+            console.log "external-types: Invalid JSON file"
+        catch e
+          console.log "external-types: Cannot open #{options['external-types']}"
+      if typeof external_types is 'object'
+        for type, url of external_types
+          @types[type] = url</pre></section><section id="Renderer__convertLink" class="private"><h2 class="class_method">Renderer::convertLink(rel_path, str)<span class="label label-private">private</span></h2><div><p>Converts link markups to HTML links in the description</p>
+</div><div></div><h3>Parameters:</h3><ul><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>rel_path</code><span> </span></li><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>str</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L105">/src/render.coffee:105</a>)</span><pre class="sourcecode prettyprint .linenums:105">convertLink: (rel_path, str) ->
+  return '' if not str
+  str = str.replace /\[\[#([^\[\]]+)\]\]/g, (_, $1) =>
+    if @result.ids[$1] and @result.ids[$1] isnt 'DUPLICATED ENTRY'
+      filename = @result.ids[$1].filename + '.html'
+      html_id = @result.ids[$1].html_id
+      return "<a href='#{rel_path}#{filename}##{html_id}'>#{$1}</a>"
+    else
+      return @makeMissingLink $1
+  return str</pre><hr class="item-seperator"></section><section id="Renderer__copyResources" class="private"><h2 class="class_method">Renderer::copyResources(source, target, callback)<span class="label label-private">private</span></h2><div></div><div></div><h3>Parameters:</h3><ul><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>source</code><span> </span></li><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>target</code><span> </span></li><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function'>Function</a>()} </span><code>callback</code><span> </span></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L121">/src/render.coffee:121</a>)</span><pre class="sourcecode prettyprint .linenums:121">copyResources: (source, target, callback) ->
+  exec = require('child_process').exec
+  exec "rm -rf #{target}/* ; mkdir -p #{target} ; cp -a #{source}/* #{target}", ->
+    callback()</pre><hr class="item-seperator"></section><section id="Renderer__makeMissingLink" class="private"><h2 class="class_method">Renderer::makeMissingLink(type)<span class="label label-private">private</span></h2><div></div><div></div><h3>Parameters:</h3><ul><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>type</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L50">/src/render.coffee:50</a>)</span><pre class="sourcecode prettyprint .linenums:50">makeMissingLink: (type, place = '') ->
+  txt = if @result.ids[type]
+    "'#{type}' link is ambiguous"
+  else
+    "'#{type}' link does not exist"
+  console.log txt + " #{place}"
+  return "<span class='missing-link'>#{type}</span>"</pre><hr class="item-seperator"></section><section id="Renderer__makeSeeLink" class="private"><h2 class="class_method">Renderer::makeSeeLink(rel_path, str)<span class="label label-private">private</span></h2><div></div><div></div><h3>Parameters:</h3><ul><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>rel_path</code><span> </span></li><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>str</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L92">/src/render.coffee:92</a>)</span><pre class="sourcecode prettyprint .linenums:92">makeSeeLink: (rel_path, str) ->
+  if @result.ids[str]
+    filename = @result.ids[str].filename + '.html'
+    html_id = @result.ids[str].html_id
+    str = "<a href='#{rel_path}#{filename}##{html_id}'>#{str}</a>"
+  return str</pre><hr class="item-seperator"></section><section id="Renderer__makeTypeLink" class="private"><h2 class="class_method">Renderer::makeTypeLink(rel_path, type)<span class="label label-private">private</span></h2><div><p>Makes links for given type</p>
+</div><div><ul>
+<li>&quot;String&quot; -&gt; &quot;&lt;a href=&#39;reference url for String&#39;&gt;String&lt;/a&gt;&quot;</li>
+<li>&quot;Array&lt;Model&gt;&quot; -&gt; &quot;&lt;a href=&#39;reference url for Array&#39;&gt;Array&lt;/a&gt;&amp;lt;&lt;a href=&#39;internal url for Model&#39;&gt;Model&lt;/a&gt;&amp;gt;&quot;</li>
+</ul>
+</div><h3>Parameters:</h3><ul><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>rel_path</code><span> </span></li><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>type</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L67">/src/render.coffee:67</a>)</span><pre class="sourcecode prettyprint .linenums:67">makeTypeLink: (rel_path, type, place = '') ->
+  return type if not type
+  getlink = (type) =>
+    if @types[type]
+      link = @types[type]
+    else if @result.ids[type] and @result.ids[type] isnt 'DUPLICATED ENTRY'
+      filename = @result.ids[type].filename + '.html'
+      html_id = @result.ids[type].html_id
+      link = "#{rel_path}#{filename}##{html_id}"
+    else
+      return @makeMissingLink type, place
+    return "<a href='#{link}'>#{type}</a>"
+  if res = type.match(/\[(.*)\]\((.*)\)/)
+    @types[res[1]] = res[2]
+    return "<a href='#{res[2]}'>#{res[1]}</a>"
+  if res = type.match /(.*?)<(.*)>/
+    return "#{@makeTypeLink rel_path, res[1]}&lt;#{@makeTypeLink rel_path, res[2]}&gt;"
+  else
+    return getlink type</pre><hr class="item-seperator"></section><section id="Renderer__renderClasses" class="private"><h2 class="class_method">Renderer::renderClasses()<span class="label label-private">private</span></h2><div></div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L193">/src/render.coffee:193</a>)</span><pre class="sourcecode prettyprint .linenums:193">renderClasses: ->
+  return if @result.classes.length is 0
+  try fs.mkdirSync "#{@output_dir}/classes"
+  @result.classes.forEach (klass) =>
+    properties = klass.properties.sort (a, b) -> if a.ctx.name < b.ctx.name then -1 else 1
+    jade_options =
+      rel_path: '../'
+      name: klass.ctx.name
+      klass: klass
+      properties: properties
+      type: 'classes'
+      makeTypeLink: (path, type) =>
+        @makeTypeLink path, type, "(in #{klass.defined_in})"
+    @renderOne jade_options, 'class', klass.filename</pre><hr class="item-seperator"></section><section id="Renderer__renderFeatures" class="private"><h2 class="class_method">Renderer::renderFeatures()<span class="label label-private">private</span></h2><div></div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L225">/src/render.coffee:225</a>)</span><pre class="sourcecode prettyprint .linenums:225">renderFeatures: ->
+  return if @result.features.length is 0
+  try fs.mkdirSync "#{@output_dir}/features"
+  @result.features.forEach (feature) =>
+    jade_options =
+      rel_path: '../'
+      name: feature.name
+      feature: feature
+      type: 'features'
+    @renderOne jade_options, 'feature', feature.filename</pre><hr class="item-seperator"></section><section id="Renderer__renderFiles" class="private"><h2 class="class_method">Renderer::renderFiles()<span class="label label-private">private</span></h2><div></div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L238">/src/render.coffee:238</a>)</span><pre class="sourcecode prettyprint .linenums:238">renderFiles: ->
+  return if @result.files.length is 0
+  try fs.mkdirSync "#{@output_dir}/files"
+  @result.files.forEach (file) =>
+    jade_options =
+      rel_path: '../'
+      name: file.name
+      file: file
+      type: 'files'
+    @renderOne jade_options, 'file', file.filename</pre><hr class="item-seperator"></section><section id="Renderer__renderGuides" class="private"><h2 class="class_method">Renderer::renderGuides()<span class="label label-private">private</span></h2><div></div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L157">/src/render.coffee:157</a>)</span><pre class="sourcecode prettyprint .linenums:157">renderGuides: ->
+  return if @result.guides.length is 0
+  try fs.mkdirSync "#{@output_dir}/guides"
+  @result.guides.forEach (guide) =>
+    content = guide.content
+    if content
+      content = markdown content
+    jade_options =
+      rel_path: '../'
+      name: guide.name
+      content: content
+      type: 'guides'
+    @renderOne jade_options, 'extra', guide.filename</pre><hr class="item-seperator"></section><section id="Renderer__renderModules" class="private"><h2 class="class_method">Renderer::renderModules()<span class="label label-private">private</span></h2><div></div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L210">/src/render.coffee:210</a>)</span><pre class="sourcecode prettyprint .linenums:210">renderModules: ->
+  return if @result.modules.length is 0
+  try fs.mkdirSync "#{@output_dir}/modules"
+  @result.modules.forEach (module) =>
+    properties = module.properties.sort (a, b) -> if a.ctx.name < b.ctx.name then -1 else 1
+    jade_options =
+      rel_path: '../'
+      name: module.ctx.name
+      module_data: module
+      properties: properties
+      type: 'modules'
+    @renderOne jade_options, 'module', module.filename</pre><hr class="item-seperator"></section><section id="Renderer__renderOne" class="private"><h2 class="class_method">Renderer::renderOne()<span class="label label-private">private</span></h2><div></div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L128">/src/render.coffee:128</a>)</span><pre class="sourcecode prettyprint .linenums:128">renderOne: (jade_options, template, output) ->
+  jade_options.result = @result
+  jade_options.makeTypeLink = @makeTypeLink.bind(@) if not jade_options.makeTypeLink
+  jade_options.makeSeeLink = @makeSeeLink.bind(@)
+  jade_options.convertLink = @convertLink.bind(@)
+  jade_options.github = @options.github
+  jade_options.cache = true
+  jade.renderFile "#{@templates_dir}/#{template}.jade", jade_options, (error, result) =>
+    return console.error error.stack if error
+    output_file = "#{@output_dir}/#{output}.html"
+    fs.writeFile output_file, result, (error) =>
+      return console.error 'failed to create '+output_file if error
+      console.log output_file + ' is created' if not @options.quite</pre><hr class="item-seperator"></section><section id="Renderer__renderPages" class="private"><h2 class="class_method">Renderer::renderPages()<span class="label label-private">private</span></h2><div></div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L173">/src/render.coffee:173</a>)</span><pre class="sourcecode prettyprint .linenums:173">renderPages: ->
+  if @result.pages.length > 0
+    jade_options =
+      rel_path: './'
+      name: 'Pages'
+      type: 'pages'
+    @renderOne jade_options, 'pages', 'pages'</pre><hr class="item-seperator"></section><section id="Renderer__renderRESTApis" class="private"><h2 class="class_method">Renderer::renderRESTApis()<span class="label label-private">private</span></h2><div></div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L183">/src/render.coffee:183</a>)</span><pre class="sourcecode prettyprint .linenums:183">renderRESTApis: ->
+  if @result.restapis.length > 0
+    jade_options =
+      rel_path: './'
+      name: 'REST APIs'
+      type: 'restapis'
+    @renderOne jade_options, 'restapis', 'restapis'</pre><hr class="item-seperator"></section><section id="Renderer__renderReadme" class="private"><h2 class="class_method">Renderer::renderReadme()<span class="label label-private">private</span></h2><div></div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L144">/src/render.coffee:144</a>)</span><pre class="sourcecode prettyprint .linenums:144">renderReadme: ->
+  fs.readFile "#{@options.readme or @options.project_dir}/README.md", 'utf-8', (error, content) =>
+    if content
+      content = markdown content
+    jade_options =
+      rel_path: './'
+      name: 'README'
+      content: content
+      type: 'home'
+    @renderOne jade_options, 'extra', 'index'</pre><hr class="item-seperator"></section><section id="Renderer__run"><h2 class="class_method">Renderer::run()</h2><div><p>Runs</p>
+</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/render.coffee#L251">/src/render.coffee:251</a>)</span><pre class="sourcecode prettyprint .linenums:251">run: ->
+  @copyResources @resources_dir, @output_dir, =>
+    @renderReadme()
+    @renderGuides()
+    @renderPages()
+    @renderRESTApis()
+    @renderClasses()
+    @renderModules()
+    @renderFeatures()
+    @renderFiles()</pre><hr class="item-seperator"></section></div></div></div><script src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="../google-code-prettify/prettify.js"></script><script src="../script.js"></script><a href="https://github.com/croquiscom/crojsdoc"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" class="github-ribbon"></a></body></html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CroJSDoc - render.coffee</title><script>if (location.protocol.match(/^http/) && location.pathname.match('\.html') === null && location.pathname.slice(-1) !== '/') {
+  location.href = location.href + '/';
+}</script><link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><ul class="nav navbar-nav"><li><a href="../index.html">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/AllCommands.html">AllCommands</a></li><li><a href="../guides/SpecifyingTypes.html">SpecifyingTypes</a></li></ul></li><li><a href="../modules/collect.html">Modules</a></li><li><a href="../classes/CodeContext.html">Classes</a></li><li class="dropdown active"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files - render.coffee <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/comment.coffee.html">comment.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div><div class="container-fluid content"><div class="row"><div data-spy="affix" class="hidden-xs sidebar col-sm-3"><div class="cormo-sidenav"><div class="panel panel-default"><ul class="nav nav-pills nav-stacked"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/comment.coffee.html">comment.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li class="active"><a href="../files/render.coffee.html">render.coffee</a></li></ul></div></div></div><div class="col-sm-9 col-sm-offset-3"><section><h1>render.coffee</h1></section><pre class="prettyprint">##
+# @module render
+
+fs = require 'fs'
+jade = require 'jade'
+markdown = require 'marked'
+{resolve} = require 'path'
+
+##
+# Renderer
+class Renderer
+  constructor: (@result, @options) -&gt;
+    @output_dir = resolve options.project_dir, options.output or 'doc'
+
+    theme = 'default'
+    @resources_dir = resolve __dirname, '../themes', theme, 'resources'
+    @templates_dir = resolve __dirname, '../themes', theme, 'templates'
+
+    # Links for pre-known types
+    @types =
+      Object: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'
+      Boolean: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean'
+      String: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'
+      Array: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'
+      Number: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number'
+      Date: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date'
+      Function: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function'
+      RegExp: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp'
+      Error: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error'
+      undefined: 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/undefined'
+
+    if external_types = options['external-types']
+      if typeof external_types is 'string'
+        try
+          content = fs.readFileSync(external_types, 'utf-8').trim()
+          try
+            external_types = JSON.parse content
+          catch e
+            console.log &quot;external-types: Invalid JSON file&quot;
+        catch e
+          console.log &quot;external-types: Cannot open #{options['external-types']}&quot;
+      if typeof external_types is 'object'
+        for type, url of external_types
+          @types[type] = url
+
+  ##
+  # @private
+  # @param {String} type
+  # @return {String}
+  makeMissingLink: (type, place = '') -&gt;
+    txt = if @result.ids[type]
+      &quot;'#{type}' link is ambiguous&quot;
+    else
+      &quot;'#{type}' link does not exist&quot;
+    console.log txt + &quot; #{place}&quot;
+    return &quot;&lt;span class='missing-link'&gt;#{type}&lt;/span&gt;&quot;
+
+  ##
+  # Makes links for given type
+  #
+  # * &quot;String&quot; -&amp;gt; &quot;&amp;lt;a href='reference url for String'&amp;gt;String&amp;lt;/a&amp;gt;&quot;
+  # * &quot;Array&amp;lt;Model&amp;gt;&quot; -&amp;gt; &quot;&amp;lt;a href='reference url for Array'&amp;gt;Array&amp;lt;/a&amp;gt;&amp;amp;lt;&amp;lt;a href='internal url for Model'&amp;gt;Model&amp;lt;/a&amp;gt;&amp;amp;gt;&quot;
+  # @private
+  # @param {String} rel_path
+  # @param {String} type
+  # @return {String}
+  makeTypeLink: (rel_path, type, place = '') -&gt;
+    return type if not type
+    getlink = (type) =&gt;
+      if @types[type]
+        link = @types[type]
+      else if @result.ids[type] and @result.ids[type] isnt 'DUPLICATED ENTRY'
+        filename = @result.ids[type].filename + '.html'
+        html_id = @result.ids[type].html_id
+        link = &quot;#{rel_path}#{filename}##{html_id}&quot;
+      else
+        return @makeMissingLink type, place
+      return &quot;&lt;a href='#{link}'&gt;#{type}&lt;/a&gt;&quot;
+    if res = type.match(/\[(.*)\]\((.*)\)/)
+      @types[res[1]] = res[2]
+      return &quot;&lt;a href='#{res[2]}'&gt;#{res[1]}&lt;/a&gt;&quot;
+    if res = type.match /(.*?)&lt;(.*)&gt;/
+      return &quot;#{@makeTypeLink rel_path, res[1]}&amp;lt;#{@makeTypeLink rel_path, res[2]}&amp;gt;&quot;
+    else
+      return getlink type
+
+  ##
+  # @private
+  # @param {String} rel_path
+  # @param {String} str
+  # @return {String}
+  makeSeeLink: (rel_path, str) -&gt;
+    if @result.ids[str]
+      filename = @result.ids[str].filename + '.html'
+      html_id = @result.ids[str].html_id
+      str = &quot;&lt;a href='#{rel_path}#{filename}##{html_id}'&gt;#{str}&lt;/a&gt;&quot;
+    return str
+
+  ##
+  # Converts link markups to HTML links in the description
+  # @private
+  # @param {String} rel_path
+  # @param {String} str
+  # @return {String}
+  convertLink: (rel_path, str) -&gt;
+    return '' if not str
+    str = str.replace /\[\[#([^\[\]]+)\]\]/g, (_, $1) =&gt;
+      if @result.ids[$1] and @result.ids[$1] isnt 'DUPLICATED ENTRY'
+        filename = @result.ids[$1].filename + '.html'
+        html_id = @result.ids[$1].html_id
+        return &quot;&lt;a href='#{rel_path}#{filename}##{html_id}'&gt;#{$1}&lt;/a&gt;&quot;
+      else
+        return @makeMissingLink $1
+    return str
+
+  ##
+  # @private
+  # @param {String} source
+  # @param {String} target
+  # @param {Function} callback
+  copyResources: (source, target, callback) -&gt;
+    exec = require('child_process').exec
+    exec &quot;rm -rf #{target}/* ; mkdir -p #{target} ; cp -a #{source}/* #{target}&quot;, -&gt;
+      callback()
+
+  ##
+  # @private
+  renderOne: (jade_options, template, output) -&gt;
+    jade_options.result = @result
+    jade_options.makeTypeLink = @makeTypeLink.bind(@) if not jade_options.makeTypeLink
+    jade_options.makeSeeLink = @makeSeeLink.bind(@)
+    jade_options.convertLink = @convertLink.bind(@)
+    jade_options.github = @options.github
+    jade_options.cache = true
+    jade.renderFile &quot;#{@templates_dir}/#{template}.jade&quot;, jade_options, (error, result) =&gt;
+      return console.error error.stack if error
+      output_file = &quot;#{@output_dir}/#{output}.html&quot;
+      fs.writeFile output_file, result, (error) =&gt;
+        return console.error 'failed to create '+output_file if error
+        console.log output_file + ' is created' if not @options.quite
+
+  ##
+  # @private
+  renderReadme: -&gt;
+    fs.readFile &quot;#{@options.readme or @options.project_dir}/README.md&quot;, 'utf-8', (error, content) =&gt;
+      if content
+        content = markdown content
+      jade_options =
+        rel_path: './'
+        name: 'README'
+        content: content
+        type: 'home'
+      @renderOne jade_options, 'extra', 'index'
+
+  ##
+  # @private
+  renderGuides: -&gt;
+    return if @result.guides.length is 0
+    try fs.mkdirSync &quot;#{@output_dir}/guides&quot;
+    @result.guides.forEach (guide) =&gt;
+      content = guide.content
+      if content
+        content = markdown content
+      jade_options =
+        rel_path: '../'
+        name: guide.name
+        content: content
+        type: 'guides'
+      @renderOne jade_options, 'extra', guide.filename
+
+  ##
+  # @private
+  renderPages: -&gt;
+    if @result.pages.length &gt; 0
+      jade_options =
+        rel_path: './'
+        name: 'Pages'
+        type: 'pages'
+      @renderOne jade_options, 'pages', 'pages'
+
+  ##
+  # @private
+  renderRESTApis: -&gt;
+    if @result.restapis.length &gt; 0
+      jade_options =
+        rel_path: './'
+        name: 'REST APIs'
+        type: 'restapis'
+      @renderOne jade_options, 'restapis', 'restapis'
+
+  ##
+  # @private
+  renderClasses: -&gt;
+    return if @result.classes.length is 0
+    try fs.mkdirSync &quot;#{@output_dir}/classes&quot;
+    @result.classes.forEach (klass) =&gt;
+      properties = klass.properties.sort (a, b) -&gt; if a.ctx.name &lt; b.ctx.name then -1 else 1
+      jade_options =
+        rel_path: '../'
+        name: klass.ctx.name
+        klass: klass
+        properties: properties
+        type: 'classes'
+        makeTypeLink: (path, type) =&gt;
+          @makeTypeLink path, type, &quot;(in #{klass.defined_in})&quot;
+      @renderOne jade_options, 'class', klass.filename
+
+  ##
+  # @private
+  renderModules: -&gt;
+    return if @result.modules.length is 0
+    try fs.mkdirSync &quot;#{@output_dir}/modules&quot;
+    @result.modules.forEach (module) =&gt;
+      properties = module.properties.sort (a, b) -&gt; if a.ctx.name &lt; b.ctx.name then -1 else 1
+      jade_options =
+        rel_path: '../'
+        name: module.ctx.name
+        module_data: module
+        properties: properties
+        type: 'modules'
+      @renderOne jade_options, 'module', module.filename
+
+  ##
+  # @private
+  renderFeatures: -&gt;
+    return if @result.features.length is 0
+    try fs.mkdirSync &quot;#{@output_dir}/features&quot;
+    @result.features.forEach (feature) =&gt;
+      jade_options =
+        rel_path: '../'
+        name: feature.name
+        feature: feature
+        type: 'features'
+      @renderOne jade_options, 'feature', feature.filename
+
+  ##
+  # @private
+  renderFiles: -&gt;
+    return if @result.files.length is 0
+    try fs.mkdirSync &quot;#{@output_dir}/files&quot;
+    @result.files.forEach (file) =&gt;
+      jade_options =
+        rel_path: '../'
+        name: file.name
+        file: file
+        type: 'files'
+      @renderOne jade_options, 'file', file.filename
+
+  ##
+  # Runs
+  run: -&gt;
+    @copyResources @resources_dir, @output_dir, =&gt;
+      @renderReadme()
+      @renderGuides()
+      @renderPages()
+      @renderRESTApis()
+      @renderClasses()
+      @renderModules()
+      @renderFeatures()
+      @renderFiles()
+
+##
+# Renders
+# @memberOf render
+render = (result, options) -&gt;
+  renderer = new Renderer result, options
+  renderer.run()
+
+module.exports = render</pre></div></div></div><script src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="../google-code-prettify/prettify.js"></script><script src="../script.js"></script><a href="https://github.com/croquiscom/crojsdoc"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" class="github-ribbon"></a></body></html>
