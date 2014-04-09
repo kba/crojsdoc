@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CroJSDoc - struct.coffee</title><script>if (location.protocol.match(/^http/) && location.pathname.match('\.html') === null && location.pathname.slice(-1) !== '/') {
+  location.href = location.href + '/';
+}</script><link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><ul class="nav navbar-nav"><li><a href="../index.html">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/AllCommands.html">AllCommands</a></li><li><a href="../guides/SpecifyingTypes.html">SpecifyingTypes</a></li></ul></li><li><a href="../modules/cli.html">Modules</a></li><li><a href="../classes/Collector.html">Classes</a></li><li class="dropdown active"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files - struct.coffee <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li><li><a href="../files/struct.coffee.html">struct.coffee</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div><div class="container-fluid content"><div class="row"><div data-spy="affix" class="hidden-xs sidebar col-sm-3"><div class="cormo-sidenav"><div class="panel panel-default"><div id="undefined_body" class="panel-collapse collapse in"><ul class="nav nav-pills nav-stacked"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li><li class="active"><a href="../files/struct.coffee.html">struct.coffee</a></li></ul></div></div></div></div><div class="col-sm-9 col-sm-offset-3"><section><h1>struct.coffee</h1></section><pre class="prettyprint">##
+# Generating options
+#
+# It is built by a config file(crojsdoc.yaml) or command line arguments
+# @namespace struct
+class Options
+  ##
+  # @property _project_dir
+  # @type String
+  # @private
+
+  ##
+  # @property types
+  # @type Object
+
+  ##
+  # @property _sources
+  # @type Array&lt;String&gt;
+
+  ##
+  # @property output_dir
+  # @type String
+
+  ##
+  # @property title
+  # @type String
+
+  ##
+  # @property quiet
+  # @type Boolean
+
+  ##
+  # @property files
+  # @type Boolean
+
+  ##
+  # @property _readme
+  # @type String
+  # @private
+
+  ##
+  # @property github
+  # @type String
+
+##
+# Input to the [[#Collector]]
+# @namespace struct
+class Content
+  ##
+  # @property path
+  # @type String
+
+  ##
+  # @property file
+  # @type String
+
+  ##
+  # @property data
+  # @type String
+
+##
+# Represents a tag in a comment
+#
+# Data differs by types.
+#
+# * types, name, description for @param
+# * types, description for @return
+# * local or title &amp; url for @see
+# * visibility for @api
+# * types for @type
+# * parent for @memberOf
+# * otherClass for @augments
+# * otherMemberName, thisMemberName for @borrows
+# * string for other types
+# @namespace struct
+class Tag
+  ##
+  # The type of this tag
+  # @property type
+  # @type String
+
+  ##
+  # The remain string if this tag is unknown
+  # @property string
+  # @type String
+
+  ##
+  # @property types
+  # @type Array&lt;String&gt;
+
+  ##
+  # @property name
+  # @type String
+
+  ##
+  # @property description
+  # @type String
+
+##
+# Represents a code context in a comment
+# @namespace struct
+class CodeContext
+  ##
+  # the type of the code.
+  # One of 'function', 'declaration', 'method', 'property', or 'class'
+  # @property type
+  # @type String
+
+  ##
+  # the name of the function, variable, or class
+  # @property name
+  # @type String
+
+  ##
+  # the name of the class that has this instance property
+  # @property constructor
+  # @type String
+
+  ##
+  # the name of the class that has this static property
+  # @property receiver
+  # @type String
+
+  ##
+  # A string that represents this code best.
+  #
+  # * function : 'name()'
+  # * declaration : 'name'
+  # * class : 'class name'
+  # * instance method(JavaScript) : 'class_name.prototype.name()'
+  # * instance method(CoffeeScript) : 'class_name::name()'
+  # * instance property(JavaScript) : 'class_name.prototype.name'
+  # * instance property(CoffeeScript) : 'class_name::name'
+  # * static method : 'class_name.name()'
+  # * static property : 'class_name.name'
+  # @property string
+  # @type String
+
+##
+# Represents a comment block
+# @namespace struct
+class Comment
+  ##
+  # The first paragraph of the description
+  # @property description.summary
+  # @type String
+
+  ##
+  # The rest paragraphs of the description
+  # @property description.body
+  # @type String
+
+  ##
+  # The whole description (summary + body)
+  # @property description.full
+  # @type String
+
+  ##
+  # List of tags
+  # @property tags
+  # @type Array&lt;Tag&gt;
+
+  ##
+  # true if there is a tag '@api private'
+  # @property isPrivate
+  # @type Boolean
+
+  ##
+  # Code block follows the code
+  # @property code
+  # @type String
+
+  ##
+  # Code context of this comment
+  # @property ctx
+  # @type CodeContext
+
+##
+# Result of [[#Collector]] and input of [[#Renderer]]
+# @namespace struct
+class Result</pre></div></div></div><script src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="../google-code-prettify/prettify.js"></script><script src="../script.js"></script><a href="https://github.com/croquiscom/crojsdoc"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" class="github-ribbon"></a></body></html>

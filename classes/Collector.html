@@ -1,8 +1,8 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CroJSDoc - Collector</title><script>if (location.protocol.match(/^http/) && location.pathname.match('\.html') === null && location.pathname.slice(-1) !== '/') {
   location.href = location.href + '/';
-}</script><link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><ul class="nav navbar-nav"><li><a href="../index.html">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/AllCommands.html">AllCommands</a></li><li><a href="../guides/SpecifyingTypes.html">SpecifyingTypes</a></li></ul></li><li><a href="../modules/collect.html">Modules</a></li><li class="active"><a href="../classes/CodeContext.html">Classes - Collector</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/comment.coffee.html">comment.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div><div class="container-fluid content"><div class="row"><div data-spy="affix" class="hidden-xs sidebar col-sm-3"><div class="cormo-sidenav"><div class="panel panel-default"><ul class="nav nav-pills nav-stacked"><li><a href="../classes/CodeContext.html">CodeContext</a></li><li class="active"><a href="#Collector">Collector</a></li><li class="cormo-class-property private"><a href="#Collector__applyMarkdown">applyMarkdown<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Collector__classifyComments">classifyComments<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Collector__findParam">findParam<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Collector__getComments">getComments<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Collector__makeNested">makeNested<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Collector__processComments">processComments<span class="label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Collector__processParamFlags">processParamFlags<span class="label label-private">private</span></a></li><li class="cormo-class-property"><a href="#Collector__refineResult">refineResult</a></li><li class="cormo-class-property"><a href="#Collector__run">run</a></li><li><a href="../classes/Comment.html">Comment</a></li><li><a href="../classes/Renderer.html">Renderer</a></li><li><a href="../classes/Tag.html">Tag</a></li></ul></div><div class="panel panel-default"><div class="panel-heading">example</div><ul class="nav nav-pills nav-stacked"><li><a href="../classes/example.ExampleCoffee.html">ExampleCoffee</a></li><li><a href="../classes/example.ExampleJS.html">ExampleJS</a></li></ul></div></div></div><div class="col-sm-9 col-sm-offset-3"><section id="Collector"><h1 class="class_title">Collector</h1><div><p>Collector</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L13">/src/collect.coffee:13</a>)</span><pre class="sourcecode prettyprint .linenums:13">class Collector
-  constructor: (@paths, @options) ->
+}</script><link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><ul class="nav navbar-nav"><li><a href="../index.html">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/AllCommands.html">AllCommands</a></li><li><a href="../guides/SpecifyingTypes.html">SpecifyingTypes</a></li></ul></li><li><a href="../modules/cli.html">Modules</a></li><li class="active"><a href="../classes/Collector.html">Classes - Collector</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li><li><a href="../files/struct.coffee.html">struct.coffee</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div><div class="container-fluid content"><div class="row"><div data-spy="affix" class="hidden-xs sidebar col-sm-3"><div class="cormo-sidenav"><div class="panel panel-default"><div id="undefined_body" class="panel-collapse collapse in"><ul class="nav nav-pills nav-stacked"><li class="active"><a href="#Collector">Collector</a></li><li class="cormo-class-property private"><a href="#Collector__applyMarkdown">applyMarkdown<span class="pull-right label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Collector__classifyComments">classifyComments<span class="pull-right label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Collector__findParam">findParam<span class="pull-right label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Collector__getComments">getComments<span class="pull-right label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Collector__makeNested">makeNested<span class="pull-right label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Collector__processComments">processComments<span class="pull-right label label-private">private</span></a></li><li class="cormo-class-property private"><a href="#Collector__processParamFlags">processParamFlags<span class="pull-right label label-private">private</span></a></li><li class="cormo-class-property"><a href="#Collector__refineResult">refineResult</a></li><li class="cormo-class-property"><a href="#Collector__run">run</a></li><li><a href="../classes/Renderer.html">Renderer</a></li></ul></div></div><div class="panel panel-default"><div data-toggle="collapse" data-target="#example_body" class="panel-heading">example<span class="pull-right glyphicon"></span></div><div id="example_body" class="panel-collapse collapse in"><ul class="nav nav-pills nav-stacked"><li><a href="../classes/example.ExampleCoffee.html">ExampleCoffee</a></li><li><a href="../classes/example.ExampleJS.html">ExampleJS</a></li></ul></div></div><div class="panel panel-default"><div data-toggle="collapse" data-target="#struct_body" class="panel-heading">struct<span class="pull-right glyphicon"></span></div><div id="struct_body" class="panel-collapse collapse in"><ul class="nav nav-pills nav-stacked"><li><a href="../classes/struct.CodeContext.html">CodeContext</a></li><li><a href="../classes/struct.Comment.html">Comment</a></li><li><a href="../classes/struct.Content.html">Content</a></li><li><a href="../classes/struct.Options.html">Options</a></li><li><a href="../classes/struct.Result.html">Result</a></li><li><a href="../classes/struct.Tag.html">Tag</a></li></ul></div></div></div></div><div class="col-sm-9 col-sm-offset-3"><section id="Collector"><h1 class="class_title">Collector</h1><div><p>Collector</p>
+</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L12">/src/collect.coffee:12</a>)</span><pre class="sourcecode prettyprint .linenums:12">class Collector
+  constructor: (@contents, @options = {}) ->
     @result =
       project_title: @options.title or 'croquis-jsdoc'
       ids: {}
@@ -11,18 +11,52 @@
       pages: {}
       restapis: {}
       features: []
-      files: []</pre></section><section id="Collector__applyMarkdown" class="private"><h2 class="class_method">Collector::applyMarkdown()<span class="label label-private">private</span></h2><div><p>Apply markdown</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L153">/src/collect.coffee:153</a>)</span><pre class="sourcecode prettyprint .linenums:153">applyMarkdown: (str) ->
+      files: []
+
+  addGuide: (file, data) ->
+    file = file.substr(0, file.length-8).replace(/\//g, '.')
+    @result.guides.push
+      name: file
+      filename: 'guides/' + file
+      content: markdown data
+
+  addFeature: (file, data) ->
+    file = file.substr 0, file.length-8
+    namespace = ''
+    file = file.replace /(.*)\//, (_, $1) ->
+      namespace = $1 + '/'
+      return ''
+    feature = ''
+    data = data.replace /Feature: (.*)/, (_, $1) ->
+      feature = $1
+      return ''
+    @result.features.push
+      name: namespace + file
+      namespace: namespace
+      filename: 'features/' + namespace.replace(/\//g, '.') + file
+      feature: feature
+      content: data
+
+  addFile: (file, data) ->
+    namespace = ''
+    file = file.replace /(.*)\//, (_, $1) ->
+      namespace = $1 + '/'
+      return ''
+    @result.files.push
+      name: namespace + file
+      namespace: namespace
+      filename: 'files/' + namespace.replace(/\//g, '.') + file
+      content: data</pre></section><section id="Collector__applyMarkdown" class="private"><div class="panel panel-success"><div data-toggle="collapse" data-target="#Collector__applyMarkdown_body" class="panel-heading collapsed"><h3 class="panel-title">Collector::applyMarkdown()<span class="label label-private">private</span><span class="pull-right glyphicon"></span></h3><div class="method-summary"><p>Apply markdown</p>
+</div></div><div id="Collector__applyMarkdown_body" class="panel-collapse collapse"><div class="panel-body"><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L115">/src/collect.coffee:115</a>)</span><pre class="sourcecode prettyprint .linenums:115">applyMarkdown: (str) ->
   # we cannot use '###' for header level 3 or above in CoffeeScript, instead web use '##\#', ''##\##', ...
   # recover this for markdown
   str = str.replace /#\\#/g, '##'
-  return markdown str</pre><hr class="item-seperator"></section><section id="Collector__classifyComments" class="private"><h2 class="class_method">Collector::classifyComments()<span class="label label-private">private</span></h2><div><p>Classifies type and collect id</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L162">/src/collect.coffee:162</a>)</span><pre class="sourcecode prettyprint .linenums:162">classifyComments: (file, comments) ->
+  return markdown str</pre></div></div></div></section><section id="Collector__classifyComments" class="private"><div class="panel panel-success"><div data-toggle="collapse" data-target="#Collector__classifyComments_body" class="panel-heading collapsed"><h3 class="panel-title">Collector::classifyComments()<span class="label label-private">private</span><span class="pull-right glyphicon"></span></h3><div class="method-summary"><p>Classifies type and collect id</p>
+</div></div><div id="Collector__classifyComments_body" class="panel-collapse collapse"><div class="panel-body"><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L124">/src/collect.coffee:124</a>)</span><pre class="sourcecode prettyprint .linenums:124">classifyComments: (comments) ->
   current_class = undefined
   current_module = undefined
 
   comments.forEach (comment) =>
-    comment.defined_in = file
     comment.ctx or comment.ctx = {}
     comment.params = []
     comment.returnprops = []
@@ -91,10 +125,14 @@
           comment.abstract = true
         when 'async'
           comment.async = true
+        when 'promise'
+          comment.return_promise = true
+        when 'nodejscallback'
+          comment.return_nodejscallback = true
         when 'param', 'return', 'returnprop', 'throws', 'resterror', 'see'
           , 'extends', 'todo', 'type', 'api', 'uses', 'override'
         else
-          console.log "Unknown tag : #{tag.type} in #{file}"
+          console.log "Unknown tag : #{tag.type} in #{comment.defined_in}"
 
     if comment.ctx.class_name
       if comment.ctx.type is 'function'
@@ -139,29 +177,21 @@
       when 'page'
         comment.filename = 'pages'
       when 'restapi'
-        comment.filename = 'restapis'</pre><hr class="item-seperator"></section><section id="Collector__findParam" class="private"><h2 class="class_method">Collector::findParam(params, name)<span class="label label-private">private</span></h2><div><p>Finds a parameter in the list</p>
-</div><div></div><h3>Parameters:</h3><ul><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>&gt;} </span><code>params</code><span> </span></li><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>name</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L126">/src/collect.coffee:126</a>)</span><pre class="sourcecode prettyprint .linenums:126">findParam: (params, name) ->
+        comment.filename = 'restapis'</pre></div></div></div></section><section id="Collector__findParam" class="private"><div class="panel panel-success"><div data-toggle="collapse" data-target="#Collector__findParam_body" class="panel-heading collapsed"><h3 class="panel-title">Collector::findParam(params, name)<span class="label label-private">private</span><span class="pull-right glyphicon"></span></h3><div class="method-summary"><p>Finds a parameter in the list</p>
+</div></div><div id="Collector__findParam_body" class="panel-collapse collapse"><div class="panel-body"><div></div><h4>Parameters</h4><table class="table table-bordered table-condensed table-hover"><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><span class="method-depth0"></span><code>params</code></td><td><span><a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>&gt;</span></td><td><span> </span></td></tr><tr><td><span class="method-depth0"></span><code>name</code></td><td><span><a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a></span></td><td><span> </span></td></tr></table><h4>Returns</h4><table class="table table-bordered table-condensed table-hover"><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>(Returns)</td><td><span><a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a></span></td><td><span></span></td></tr></table><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L88">/src/collect.coffee:88</a>)</span><pre class="sourcecode prettyprint .linenums:88">findParam: (params, name) ->
   for param in params
     if param.name is name
       return param
     if param.params
       found = @findParam param.params, name
       return found if found
-  return</pre><hr class="item-seperator"></section><section id="Collector__getComments" class="private"><h2 class="class_method">Collector::getComments(file)<span class="label label-private">private</span></h2><div><p>Returns list of comments of the given file</p>
-</div><div></div><h3>Parameters:</h3><ul><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a>} </span><code>file</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='../classes/Comment.html#Comment'>Comment</a>&gt;} </span><span></span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L30">/src/collect.coffee:30</a>)</span><pre class="sourcecode prettyprint .linenums:30">getComments: (file, path) ->
-  return if fs.statSync(file).isDirectory()
-  content = fs.readFileSync(file, 'utf-8').trim()
-  return if not content
-
-  file = file.substr(path.length+1)
-
-  if /\.coffee$/.test file
-    comments = dox.parseCommentsCoffee content, { raw: true }
-    add_to_file = true
-  else if /\.js$/.test file
-    comments = dox.parseComments content, { raw: true }
-    add_to_file = true
-  else if /Page\.md$/.test file
+  return</pre></div></div></div></section><section id="Collector__getComments" class="private"><div class="panel panel-success"><div data-toggle="collapse" data-target="#Collector__getComments_body" class="panel-heading collapsed"><h3 class="panel-title">Collector::getComments(file)<span class="label label-private">private</span><span class="pull-right glyphicon"></span></h3><div class="method-summary"><p>Returns list of comments of the given file</p>
+</div></div><div id="Collector__getComments_body" class="panel-collapse collapse"><div class="panel-body"><div></div><h4>Parameters</h4><table class="table table-bordered table-condensed table-hover"><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><span class="method-depth0"></span><code>file</code></td><td><span><a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a></span></td><td><span> </span></td></tr></table><h4>Returns</h4><table class="table table-bordered table-condensed table-hover"><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>(Returns)</td><td><span><a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='../classes/struct.Comment.html#struct_Comment'>Comment</a>&gt;</span></td><td><span></span></td></tr></table><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L256">/src/collect.coffee:256</a>)</span><pre class="sourcecode prettyprint .linenums:256">getComments: (type, path, file, data) ->
+  if type is 'coffeescript'
+    comments = dox.parseCommentsCoffee data, { raw: true }
+  else if type is 'javascript'
+    comments = dox.parseComments data, { raw: true }
+  else if type is 'page'
     namespace = ''
     file = file.substr(0, file.length-3).replace(/[^A-Za-z0-9]*Page$/, '')
     file = file.replace /(.*)\//, (_, $1) ->
@@ -170,51 +200,27 @@
     comments = [ {
       description:
         summary: ''
-        body: content
+        body: data
         full: ''
       tags: [
         { type: 'page', string: file }
         { type: 'namespace', string: namespace }
       ]
     } ]
-  else if /Guide\.md$/.test file
-    file = file.substr(0, file.length-8).replace(/\//g, '.')
-    @result.guides.push
-      name: file
-      filename: 'guides/' + file
-      content: content
-  else if /\.feature$/.test file
-    file = file.substr 0, file.length-8
-    namespace = ''
-    file = file.replace /(.*)\//, (_, $1) ->
-      namespace = $1 + '/'
-      return ''
-    feature = ''
-    content = content.replace /Feature: (.*)/, (_, $1) ->
-      feature = $1
-      return ''
-    @result.features.push
-      name: namespace + file
-      namespace: namespace
-      filename: 'features/' + namespace.replace(/\//g, '.') + file
-      feature: feature
-      content: content
 
-  if add_to_file
-    namespace = ''
-    file = file.replace /(.*)\//, (_, $1) ->
-      namespace = $1 + '/'
-      return ''
-    @result.files.push
-      name: namespace + file
-      namespace: namespace
-      filename: 'files/' + namespace.replace(/\//g, '.') + file
-      content: content
+  return if not comments?
 
   # filter out empty comments
-  return comments?.filter (comment) ->
-    return comment.description.full or comment.description.summary or comment.description.body or comment.tags?.length > 0</pre><hr class="item-seperator"></section><section id="Collector__makeNested" class="private"><h2 class="class_method">Collector::makeNested()<span class="label label-private">private</span></h2><div><p>Makes parameters(or returnprops) nested</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L138">/src/collect.coffee:138</a>)</span><pre class="sourcecode prettyprint .linenums:138">makeNested: (comment, targetName) ->
+  comments = comments.filter (comment) ->
+    return comment.description.full or comment.description.summary or comment.description.body or comment.tags?.length > 0
+
+  comments.forEach (comment) =>
+    comment.defined_in = path
+
+  @classifyComments comments
+
+  return comments</pre></div></div></div></section><section id="Collector__makeNested" class="private"><div class="panel panel-success"><div data-toggle="collapse" data-target="#Collector__makeNested_body" class="panel-heading collapsed"><h3 class="panel-title">Collector::makeNested()<span class="label label-private">private</span><span class="pull-right glyphicon"></span></h3><div class="method-summary"><p>Makes parameters(or returnprops) nested</p>
+</div></div><div id="Collector__makeNested_body" class="panel-collapse collapse"><div class="panel-body"><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L100">/src/collect.coffee:100</a>)</span><pre class="sourcecode prettyprint .linenums:100">makeNested: (comment, targetName) ->
   i = comment[targetName].length
   while i-->0
     param = comment[targetName][i]
@@ -224,8 +230,8 @@
         comment[targetName].splice i, 1
         parentParam[targetName] = parentParam[targetName] or []
         param.name = match[2]
-        parentParam[targetName].unshift param</pre><hr class="item-seperator"></section><section id="Collector__processComments" class="private"><h2 class="class_method">Collector::processComments()<span class="label label-private">private</span></h2><div><p>Structuralizes comments</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L289">/src/collect.coffee:289</a>)</span><pre class="sourcecode prettyprint .linenums:289">processComments: (comments) ->
+        parentParam[targetName].unshift param</pre></div></div></div></section><section id="Collector__processComments" class="private"><div class="panel panel-success"><div data-toggle="collapse" data-target="#Collector__processComments_body" class="panel-heading collapsed"><h3 class="panel-title">Collector::processComments()<span class="label label-private">private</span><span class="pull-right glyphicon"></span></h3><div class="method-summary"><p>Structuralizes comments</p>
+</div></div><div id="Collector__processComments_body" class="panel-collapse collapse"><div class="panel-body"><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L294">/src/collect.coffee:294</a>)</span><pre class="sourcecode prettyprint .linenums:294">processComments: (comments) ->
   comments.forEach (comment) =>
     desc = comment.description
     if desc
@@ -292,6 +298,24 @@
     @makeNested comment, 'params'
     @makeNested comment, 'returnprops'
 
+    if comment.return_nodejscallback
+      callback_params = [ {
+          name: 'error'
+          types: ['Error']
+          description: 'See throws'
+        } ]
+      if comment.return
+        callback_params.push
+            name: 'result'
+            types: comment.return.types
+            description: 'See returns'
+      comment.params.push
+        name: 'callback'
+        types: ['Function']
+        optional: comment.return_promise
+        description: 'NodeJS style\'s callback'
+        params: callback_params
+
     switch comment.ctx.type
       when 'property', 'method'
         class_name = comment.ctx.class_name
@@ -302,14 +326,14 @@
       when 'page'
         @result.pages[comment.ctx.name] = comment
       when 'restapi'
-        @result.restapis[comment.ctx.name] = comment</pre><hr class="item-seperator"></section><section id="Collector__processParamFlags" class="private"><h2 class="class_method">Collector::processParamFlags(tag)<span class="label label-private">private</span></h2><div><p>Checks flags of parameter</p>
-</div><div><ul>
+        @result.restapis[comment.ctx.name] = comment</pre></div></div></div></section><section id="Collector__processParamFlags" class="private"><div class="panel panel-success"><div data-toggle="collapse" data-target="#Collector__processParamFlags_body" class="panel-heading collapsed"><h3 class="panel-title">Collector::processParamFlags(tag)<span class="label label-private">private</span><span class="pull-right glyphicon"></span></h3><div class="method-summary"><p>Checks flags of parameter</p>
+</div></div><div id="Collector__processParamFlags_body" class="panel-collapse collapse"><div class="panel-body"><div><ul>
 <li>&#39;[&#39; name &#39;]&#39; : optional</li>
 <li>name &#39;=&#39; value : default value</li>
 <li>&#39;+&#39; name : addable</li>
 <li>&#39;-&#39; name : excludable</li>
 </ul>
-</div><h3>Parameters:</h3><ul><li><span>{<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><code>tag</code><span> </span></li></ul><h3>Returns:</h3><ul><li><span> {<a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a>} </span><span>given tag</span><ul></ul></li></ul><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L107">/src/collect.coffee:107</a>)</span><pre class="sourcecode prettyprint .linenums:107">processParamFlags: (tag) ->
+</div><h4>Parameters</h4><table class="table table-bordered table-condensed table-hover"><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><span class="method-depth0"></span><code>tag</code></td><td><span><a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a></span></td><td><span> </span></td></tr></table><h4>Returns</h4><table class="table table-bordered table-condensed table-hover"><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>(Returns)</td><td><span><a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object'>Object</a></span></td><td><span>given tag</span></td></tr></table><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L69">/src/collect.coffee:69</a>)</span><pre class="sourcecode prettyprint .linenums:69">processParamFlags: (tag) ->
   # is optional parameter?
   if /\[([^\[\]]+)\]/.exec tag.name
     tag.name = RegExp.$1
@@ -320,12 +344,12 @@
   if tag.name.substr(0, 1) is '-'
     tag.name = tag.name.substr(1)
     tag.excludable = true
-  return tag</pre><hr class="item-seperator"></section><section id="Collector__refineResult"><h2 class="class_method">Collector::refineResult()</h2><div><p>Refines result.</p>
-</div><div><ul>
+  return tag</pre></div></div></div></section><section id="Collector__refineResult"><div class="panel panel-success"><div data-toggle="collapse" data-target="#Collector__refineResult_body" class="panel-heading collapsed"><h3 class="panel-title">Collector::refineResult()<span class="pull-right glyphicon"></span></h3><div class="method-summary"><p>Refines result.</p>
+</div></div><div id="Collector__refineResult_body" class="panel-collapse collapse"><div class="panel-body"><div><ul>
 <li>convert hash to sorted array</li>
 <li>classes -&gt; classes &amp; modules</li>
 </ul>
-</div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L373">/src/collect.coffee:373</a>)</span><pre class="sourcecode prettyprint .linenums:373">refineResult: ->
+</div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L396">/src/collect.coffee:396</a>)</span><pre class="sourcecode prettyprint .linenums:396">refineResult: ->
   result = @result
   result.classes = Object.keys(result.classes).sort( (a,b) ->
     a_ns = result.classes[a].namespace
@@ -361,35 +385,38 @@
     return 1 if a_ns > b_ns
     if a.name<b.name then -1 else 1
 
+  result.classes.forEach (klass) ->
+    klass.properties.sort (a, b) -> if a.ctx.name < b.ctx.name then -1 else 1
+    for property in klass.properties
+      property.ctx = _.pick property.ctx, 'type', 'name', 'fullname'
+
   result.modules = result.classes.filter (klass) -> klass.is_module
-  result.classes = result.classes.filter (klass) -> not klass.is_module</pre><hr class="item-seperator"></section><section id="Collector__run"><h2 class="class_method">Collector::run()</h2><div><p>Runs</p>
-</div><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L414">/src/collect.coffee:414</a>)</span><pre class="sourcecode prettyprint .linenums:414">run: ->
-  file_count_read = 0
-
+  result.classes = result.classes.filter (klass) -> not klass.is_module</pre></div></div></div></section><section id="Collector__run"><div class="panel panel-success"><div data-toggle="collapse" data-target="#Collector__run_body" class="panel-heading collapsed"><h3 class="panel-title">Collector::run()<span class="pull-right glyphicon"></span></h3><div class="method-summary"><p>Runs</p>
+</div></div><div id="Collector__run_body" class="panel-collapse collapse"><div class="panel-body"><div></div><button class="showcode btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L458">/src/collect.coffee:458</a>)</span><pre class="sourcecode prettyprint .linenums:458">run: ->
   all_comments = []
-  @paths.forEach (path) =>
-    base_path = path = resolve @options.project_dir, path
-    base_path = dirname base_path while /[*?]/.test basename(base_path)
-    glob.sync(path).forEach (path) =>
-      if fs.statSync(path).isDirectory()
-        list = walkdir.sync path
-      else
-        list = [path]
-      list.forEach (file) =>
-        comments = @getComments file, base_path
-        return if not comments?
+  file_count_read = 0
+  for {path, file, data} in @contents
+    type = @getType file
+    switch type
+      when 'guide'
+        @addGuide file, data
+      when 'feature'
+        @addFeature file, data
+      when 'coffeescript', 'javascript', 'page'
+        comments = @getComments type, path, file, data
+        if comments?
+          [].push.apply all_comments, comments
+      when 'readme'
+        @result.readme = markdown data
+    if type is 'coffeescript' or type is 'javascript'
+      @addFile file, data
+    file_count_read++
+    console.log file + ' is processed' if not (@options.quite or is_test_mode)
 
-        file_count_read++
-        console.log file + ' is processed' if not @options.quite
-
-        file = file.replace new RegExp("^" + @options.project_dir), ''
-        @classifyComments file, comments
-        all_comments.push.apply all_comments, comments
-
-  console.log 'Total ' + file_count_read + ' files processed'
+  console.log 'Total ' + file_count_read + ' files processed' if not is_test_mode
 
   @processComments all_comments
 
   if not @options.files
     @result.files = []
-  @refineResult()</pre><hr class="item-seperator"></section></div></div></div><script src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="../google-code-prettify/prettify.js"></script><script src="../script.js"></script><a href="https://github.com/croquiscom/crojsdoc"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" class="github-ribbon"></a></body></html>
+  @refineResult()</pre></div></div></div></section></div></div></div><script src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="../google-code-prettify/prettify.js"></script><script src="../script.js"></script><a href="https://github.com/croquiscom/crojsdoc"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" class="github-ribbon"></a></body></html>

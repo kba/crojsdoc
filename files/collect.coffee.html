@@ -1,19 +1,18 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CroJSDoc - collect.coffee</title><script>if (location.protocol.match(/^http/) && location.pathname.match('\.html') === null && location.pathname.slice(-1) !== '/') {
   location.href = location.href + '/';
-}</script><link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><ul class="nav navbar-nav"><li><a href="../index.html">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/AllCommands.html">AllCommands</a></li><li><a href="../guides/SpecifyingTypes.html">SpecifyingTypes</a></li></ul></li><li><a href="../modules/collect.html">Modules</a></li><li><a href="../classes/CodeContext.html">Classes</a></li><li class="dropdown active"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files - collect.coffee <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/comment.coffee.html">comment.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div><div class="container-fluid content"><div class="row"><div data-spy="affix" class="hidden-xs sidebar col-sm-3"><div class="cormo-sidenav"><div class="panel panel-default"><ul class="nav nav-pills nav-stacked"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li class="active"><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/comment.coffee.html">comment.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li></ul></div></div></div><div class="col-sm-9 col-sm-offset-3"><section><h1>collect.coffee</h1></section><pre class="prettyprint">##
+}</script><link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><ul class="nav navbar-nav"><li><a href="../index.html">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/AllCommands.html">AllCommands</a></li><li><a href="../guides/SpecifyingTypes.html">SpecifyingTypes</a></li></ul></li><li><a href="../modules/cli.html">Modules</a></li><li><a href="../classes/Collector.html">Classes</a></li><li class="dropdown active"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files - collect.coffee <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li><li><a href="../files/struct.coffee.html">struct.coffee</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div><div class="container-fluid content"><div class="row"><div data-spy="affix" class="hidden-xs sidebar col-sm-3"><div class="cormo-sidenav"><div class="panel panel-default"><div id="undefined_body" class="panel-collapse collapse in"><ul class="nav nav-pills nav-stacked"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li class="active"><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li><li><a href="../files/struct.coffee.html">struct.coffee</a></li></ul></div></div></div></div><div class="col-sm-9 col-sm-offset-3"><section><h1>collect.coffee</h1></section><pre class="prettyprint">##
 # @module collect
 
+_ = require 'lodash'
 dox = require './dox'
-fs = require 'fs'
-glob = require 'glob'
 markdown = require 'marked'
-walkdir = require 'walkdir'
-{basename,dirname,resolve} = require 'path'
+
+is_test_mode = process.env.NODE_ENV is 'test'
 
 ##
 # Collector
 class Collector
-  constructor: (@paths, @options) -&gt;
+  constructor: (@contents, @options = {}) -&gt;
     @result =
       project_title: @options.title or 'croquis-jsdoc'
       ids: {}
@@ -24,77 +23,40 @@ class Collector
       features: []
       files: []
 
-  ##
-  # Returns list of comments of the given file
-  # @private
-  # @param {String} file
-  # @return {Array&lt;Comment&gt;}
-  getComments: (file, path) -&gt;
-    return if fs.statSync(file).isDirectory()
-    content = fs.readFileSync(file, 'utf-8').trim()
-    return if not content
+  addGuide: (file, data) -&gt;
+    file = file.substr(0, file.length-8).replace(/\//g, '.')
+    @result.guides.push
+      name: file
+      filename: 'guides/' + file
+      content: markdown data
 
-    file = file.substr(path.length+1)
+  addFeature: (file, data) -&gt;
+    file = file.substr 0, file.length-8
+    namespace = ''
+    file = file.replace /(.*)\//, (_, $1) -&gt;
+      namespace = $1 + '/'
+      return ''
+    feature = ''
+    data = data.replace /Feature: (.*)/, (_, $1) -&gt;
+      feature = $1
+      return ''
+    @result.features.push
+      name: namespace + file
+      namespace: namespace
+      filename: 'features/' + namespace.replace(/\//g, '.') + file
+      feature: feature
+      content: data
 
-    if /\.coffee$/.test file
-      comments = dox.parseCommentsCoffee content, { raw: true }
-      add_to_file = true
-    else if /\.js$/.test file
-      comments = dox.parseComments content, { raw: true }
-      add_to_file = true
-    else if /Page\.md$/.test file
-      namespace = ''
-      file = file.substr(0, file.length-3).replace(/[^A-Za-z0-9]*Page$/, '')
-      file = file.replace /(.*)\//, (_, $1) -&gt;
-        namespace = $1
-        return ''
-      comments = [ {
-        description:
-          summary: ''
-          body: content
-          full: ''
-        tags: [
-          { type: 'page', string: file }
-          { type: 'namespace', string: namespace }
-        ]
-      } ]
-    else if /Guide\.md$/.test file
-      file = file.substr(0, file.length-8).replace(/\//g, '.')
-      @result.guides.push
-        name: file
-        filename: 'guides/' + file
-        content: content
-    else if /\.feature$/.test file
-      file = file.substr 0, file.length-8
-      namespace = ''
-      file = file.replace /(.*)\//, (_, $1) -&gt;
-        namespace = $1 + '/'
-        return ''
-      feature = ''
-      content = content.replace /Feature: (.*)/, (_, $1) -&gt;
-        feature = $1
-        return ''
-      @result.features.push
-        name: namespace + file
-        namespace: namespace
-        filename: 'features/' + namespace.replace(/\//g, '.') + file
-        feature: feature
-        content: content
-
-    if add_to_file
-      namespace = ''
-      file = file.replace /(.*)\//, (_, $1) -&gt;
-        namespace = $1 + '/'
-        return ''
-      @result.files.push
-        name: namespace + file
-        namespace: namespace
-        filename: 'files/' + namespace.replace(/\//g, '.') + file
-        content: content
-
-    # filter out empty comments
-    return comments?.filter (comment) -&gt;
-      return comment.description.full or comment.description.summary or comment.description.body or comment.tags?.length &gt; 0
+  addFile: (file, data) -&gt;
+    namespace = ''
+    file = file.replace /(.*)\//, (_, $1) -&gt;
+      namespace = $1 + '/'
+      return ''
+    @result.files.push
+      name: namespace + file
+      namespace: namespace
+      filename: 'files/' + namespace.replace(/\//g, '.') + file
+      content: data
 
   ##
   # Checks flags of parameter
@@ -161,12 +123,11 @@ class Collector
   ##
   # Classifies type and collect id
   # @private
-  classifyComments: (file, comments) -&gt;
+  classifyComments: (comments) -&gt;
     current_class = undefined
     current_module = undefined
 
     comments.forEach (comment) =&gt;
-      comment.defined_in = file
       comment.ctx or comment.ctx = {}
       comment.params = []
       comment.returnprops = []
@@ -235,10 +196,14 @@ class Collector
             comment.abstract = true
           when 'async'
             comment.async = true
+          when 'promise'
+            comment.return_promise = true
+          when 'nodejscallback'
+            comment.return_nodejscallback = true
           when 'param', 'return', 'returnprop', 'throws', 'resterror', 'see'
             , 'extends', 'todo', 'type', 'api', 'uses', 'override'
           else
-            console.log &quot;Unknown tag : #{tag.type} in #{file}&quot;
+            console.log &quot;Unknown tag : #{tag.type} in #{comment.defined_in}&quot;
 
       if comment.ctx.class_name
         if comment.ctx.type is 'function'
@@ -284,6 +249,46 @@ class Collector
           comment.filename = 'pages'
         when 'restapi'
           comment.filename = 'restapis'
+
+  ##
+  # Returns list of comments of the given file
+  # @private
+  # @param {String} file
+  # @return {Array&lt;Comment&gt;}
+  getComments: (type, path, file, data) -&gt;
+    if type is 'coffeescript'
+      comments = dox.parseCommentsCoffee data, { raw: true }
+    else if type is 'javascript'
+      comments = dox.parseComments data, { raw: true }
+    else if type is 'page'
+      namespace = ''
+      file = file.substr(0, file.length-3).replace(/[^A-Za-z0-9]*Page$/, '')
+      file = file.replace /(.*)\//, (_, $1) -&gt;
+        namespace = $1
+        return ''
+      comments = [ {
+        description:
+          summary: ''
+          body: data
+          full: ''
+        tags: [
+          { type: 'page', string: file }
+          { type: 'namespace', string: namespace }
+        ]
+      } ]
+
+    return if not comments?
+
+    # filter out empty comments
+    comments = comments.filter (comment) -&gt;
+      return comment.description.full or comment.description.summary or comment.description.body or comment.tags?.length &gt; 0
+
+    comments.forEach (comment) =&gt;
+      comment.defined_in = path
+
+    @classifyComments comments
+
+    return comments
 
   ##
   # Structuralizes comments
@@ -355,6 +360,24 @@ class Collector
       @makeNested comment, 'params'
       @makeNested comment, 'returnprops'
 
+      if comment.return_nodejscallback
+        callback_params = [ {
+            name: 'error'
+            types: ['Error']
+            description: 'See throws'
+          } ]
+        if comment.return
+          callback_params.push
+              name: 'result'
+              types: comment.return.types
+              description: 'See returns'
+        comment.params.push
+          name: 'callback'
+          types: ['Function']
+          optional: comment.return_promise
+          description: 'NodeJS style\'s callback'
+          params: callback_params
+
       switch comment.ctx.type
         when 'property', 'method'
           class_name = comment.ctx.class_name
@@ -408,35 +431,54 @@ class Collector
       return 1 if a_ns &gt; b_ns
       if a.name&lt;b.name then -1 else 1
 
+    result.classes.forEach (klass) -&gt;
+      klass.properties.sort (a, b) -&gt; if a.ctx.name &lt; b.ctx.name then -1 else 1
+      for property in klass.properties
+        property.ctx = _.pick property.ctx, 'type', 'name', 'fullname'
+
     result.modules = result.classes.filter (klass) -&gt; klass.is_module
     result.classes = result.classes.filter (klass) -&gt; not klass.is_module
+
+  getType: (file) -&gt;
+    if /\.coffee$/.test file
+      return 'coffeescript'
+    else if /\.js$/.test file
+      return 'javascript'
+    else if /Page\.md$/.test file
+      return 'page'
+    else if /Guide\.md$/.test file
+      return 'guide'
+    else if /\.feature$/.test file
+      return 'feature'
+    else if file is 'README'
+      return 'readme'
+    else
+      return 'unknown'
 
   ##
   # Runs
   run: -&gt;
-    file_count_read = 0
-
     all_comments = []
-    @paths.forEach (path) =&gt;
-      base_path = path = resolve @options.project_dir, path
-      base_path = dirname base_path while /[*?]/.test basename(base_path)
-      glob.sync(path).forEach (path) =&gt;
-        if fs.statSync(path).isDirectory()
-          list = walkdir.sync path
-        else
-          list = [path]
-        list.forEach (file) =&gt;
-          comments = @getComments file, base_path
-          return if not comments?
+    file_count_read = 0
+    for {path, file, data} in @contents
+      type = @getType file
+      switch type
+        when 'guide'
+          @addGuide file, data
+        when 'feature'
+          @addFeature file, data
+        when 'coffeescript', 'javascript', 'page'
+          comments = @getComments type, path, file, data
+          if comments?
+            [].push.apply all_comments, comments
+        when 'readme'
+          @result.readme = markdown data
+      if type is 'coffeescript' or type is 'javascript'
+        @addFile file, data
+      file_count_read++
+      console.log file + ' is processed' if not (@options.quite or is_test_mode)
 
-          file_count_read++
-          console.log file + ' is processed' if not @options.quite
-
-          file = file.replace new RegExp(&quot;^&quot; + @options.project_dir), ''
-          @classifyComments file, comments
-          all_comments.push.apply all_comments, comments
-
-    console.log 'Total ' + file_count_read + ' files processed'
+    console.log 'Total ' + file_count_read + ' files processed' if not is_test_mode
 
     @processComments all_comments
 
@@ -446,9 +488,12 @@ class Collector
 
 ##
 # Collects
+# @param {Array&lt;Content&gt;} contents
+# @param {Options} options
+# @return {Result}
 # @memberOf collect
-collect = (paths, options) -&gt;
-  collector = new Collector paths, options
+collect = (contents, options) -&gt;
+  collector = new Collector contents, options
   collector.run()
   return collector.result
 
