@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CroJSDoc - Setup github pages</title><script>if (location.protocol.match(/^http/) && location.pathname.match('\.html') === null && location.pathname.slice(-1) !== '/') {
+  location.href = location.href + '/';
+}</script><link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"><link href="../tocify/jquery.tocify.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><ul class="nav navbar-nav"><li><a href="../index.html">Home</a></li><li class="dropdown active"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides - Setup github pages <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/ListOfTags.html">List of tags</a></li><li><a href="../guides/SetupGithubPages.html">Setup github pages</a></li><li><a href="../guides/SpecifyingReturns.html">Specifying returns</a></li><li><a href="../guides/SpecifyingTypes.html">Specifying types</a></li></ul></li><li><a href="../modules/index.html">Modules</a></li><li><a href="../classes/index.html">Classes</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li><li><a href="../files/struct.coffee.html">struct.coffee</a></li><li><a href="../files/dox.dox.coffee.html">dox/dox.coffee</a></li><li><a href="../files/dox.dox_coffee.coffee.html">dox/dox_coffee.coffee</a></li><li><a href="../files/dox.index.coffee.html">dox/index.coffee</a></li><li><a href="../files/dox.utils.coffee.html">dox/utils.coffee</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div><div class="container-fluid content"><div class="row"><div class="hidden-xs col-sm-3"><div id="toc"></div></div><div class="col-sm-9"><div><p>If your repository is in the GitHub, you can serve your documentation using
+<a href="https://pages.github.com/">GitHub Pages</a> easily.
+This guide shows how to setup GitHub pages with CroJSDoc.</p>
+<p>See also <a href="https://help.github.com/articles/creating-project-pages-manually">Creating Project Pages manually - GitHub Help</a>.</p>
+<h1 id="clone-your-repository-to-the-doc-directory">Clone your repository to the doc directory</h1>
+<pre><code class="lang-bash"># In your project root
+$ git clone https://github.com/user/repository.git doc
+Cloning into &#39;doc&#39;...
+done.
+
+# Add doc to the ignore list
+$ echo doc &gt;&gt; .gitignore
+</code></pre>
+<h1 id="create-a-gh-pages-branch">Create a gh-pages branch</h1>
+<pre><code class="lang-bash">$ cd doc
+
+$ git checkout --orphan gh-pages
+Switched to a new branch &#39;gh-pages&#39;
+
+$ git rm -rf .
+rm &#39;.gitignore&#39;
+...
+</code></pre>
+<h1 id="generate-documentation">Generate documentation</h1>
+<pre><code class="lang-bash">$ cd ..
+
+$ crojsdoc
+Total x files processed
+</code></pre>
+<h1 id="commit-and-push">Commit and push</h1>
+<pre><code class="lang-bash">$ cd doc
+
+$ git add .
+
+$ git commit -m &#39;Update documentation&#39;
+
+$ git push origin gh-pages
+</code></pre>
+<h1 id="more-options">More options</h1>
+<p>If you delete master branch, you can omit repository and refspec arguments of git push.</p>
+<pre><code class="lang-bash">$ git branch -D master
+
+$ git push
+</code></pre>
+</div></div></div></div><script src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="../google-code-prettify/prettify.js"></script><script src="../script.js"></script><script src="http://code.jquery.com/ui/1.9.0/jquery-ui.min.js"></script><script src="../tocify/jquery.tocify.js"></script><script>$(function() {
+  $('#toc').tocify({extendPage:false, scrollTo:60});
+});</script><a href="https://github.com/croquiscom/crojsdoc"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" class="github-ribbon"></a></body></html>

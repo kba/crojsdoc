@@ -1,12 +1,13 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CroJSDoc - collect.coffee</title><script>if (location.protocol.match(/^http/) && location.pathname.match('\.html') === null && location.pathname.slice(-1) !== '/') {
   location.href = location.href + '/';
-}</script><link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><ul class="nav navbar-nav"><li><a href="../index.html">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/ListOfTags.html">ListOfTags</a></li><li><a href="../guides/SpecifyingReturns.html">SpecifyingReturns</a></li><li><a href="../guides/SpecifyingTypes.html">SpecifyingTypes</a></li></ul></li><li><a href="../modules/index.html">Modules</a></li><li><a href="../classes/index.html">Classes</a></li><li class="dropdown active"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files - collect.coffee <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li><li><a href="../files/struct.coffee.html">struct.coffee</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div><div class="container-fluid content"><div class="row"><div data-spy="affix" class="hidden-xs sidebar col-sm-3"><div class="cormo-sidenav"><div class="panel panel-default"><div id="undefined_body" class="panel-collapse collapse in"><ul class="nav nav-pills nav-stacked"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li class="active"><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li><li><a href="../files/struct.coffee.html">struct.coffee</a></li></ul></div></div></div></div><div class="col-sm-9 col-sm-offset-3"><section><h1>collect.coffee</h1></section><pre class="prettyprint">##
+}</script><link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><div class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><ul class="nav navbar-nav"><li><a href="../index.html">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/ListOfTags.html">List of tags</a></li><li><a href="../guides/SetupGithubPages.html">Setup github pages</a></li><li><a href="../guides/SpecifyingReturns.html">Specifying returns</a></li><li><a href="../guides/SpecifyingTypes.html">Specifying types</a></li></ul></li><li><a href="../modules/index.html">Modules</a></li><li><a href="../classes/index.html">Classes</a></li><li class="dropdown active"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files - collect.coffee <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li><li><a href="../files/struct.coffee.html">struct.coffee</a></li><li><a href="../files/dox.dox.coffee.html">dox/dox.coffee</a></li><li><a href="../files/dox.dox_coffee.coffee.html">dox/dox_coffee.coffee</a></li><li><a href="../files/dox.index.coffee.html">dox/index.coffee</a></li><li><a href="../files/dox.utils.coffee.html">dox/utils.coffee</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div><div class="container-fluid content"><div class="row"><div data-spy="affix" class="hidden-xs sidebar col-sm-3"><div class="cormo-sidenav"><div class="panel panel-default"><div id="undefined_body" class="panel-collapse collapse in"><ul class="nav nav-pills nav-stacked"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li class="active"><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li><li><a href="../files/struct.coffee.html">struct.coffee</a></li></ul></div></div><div class="panel panel-default"><div data-toggle="collapse" data-target="#dox/_body" class="panel-heading">dox/<span class="pull-right glyphicon"></span></div><div id="dox/_body" class="panel-collapse collapse in"><ul class="nav nav-pills nav-stacked"><li><a href="../files/dox.dox.coffee.html">dox.coffee</a></li><li><a href="../files/dox.dox_coffee.coffee.html">dox_coffee.coffee</a></li><li><a href="../files/dox.index.coffee.html">index.coffee</a></li><li><a href="../files/dox.utils.coffee.html">utils.coffee</a></li></ul></div></div></div></div><div class="col-sm-9 col-sm-offset-3"><section><h1>collect.coffee</h1></section><pre class="prettyprint">##
 # Collects comments from source files
 # @module collect
 # @see Collector
 
 _ = require 'lodash'
 dox = require './dox'
+inflect = require 'inflect'
 markdown = require 'marked'
 
 is_test_mode = process.env.NODE_ENV is 'test'
@@ -33,7 +34,7 @@ class Collector
   addGuide: (file, data) -&gt;
     file = file.substr(0, file.length-8).replace(/\//g, '.')
     @result.guides.push
-      name: file
+      name: inflect.humanize inflect.underscore file
       filename: 'guides/' + file
       content: markdown data
 
@@ -147,6 +148,7 @@ class Collector
       comment.throws = []
       comment.resterrors = []
       comment.sees = []
+      comment.reverse_sees = []
       comment.todos = []
       comment.extends = []
       comment.subclasses = []
@@ -189,10 +191,10 @@ class Collector
               comment.ctx.name = tag.string
               comment.ctx.fullname = id = comment.ctx.name
             comment.code = null
-          when 'memberOf'
-            if /(::|#|prototype)$/.test tag.parent
+          when 'memberof'
+            if /(::|#|\.prototype)$/.test tag.parent
               comment.static = false
-              comment.ctx.class_name = tag.parent.replace /(::|#|prototype)$/, ''
+              comment.ctx.class_name = tag.parent.replace /(::|#|\.prototype)$/, ''
             else
               comment.static = true
               comment.ctx.class_name = tag.parent
@@ -200,7 +202,8 @@ class Collector
             comment.namespace = if tag.string then tag.string + '.' else ''
           when 'property', 'method'
             comment.ctx.type = tag.type
-            comment.ctx.name = tag.string
+            if tag.string
+              comment.ctx.name = tag.string
           when 'static'
             comment.static = true
           when 'private'
@@ -241,10 +244,14 @@ class Collector
           comment.ctx.class_name = current_module.ctx.name
 
       if id
+        comment.id = id
         if @result.ids.hasOwnProperty id
           @result.ids[id] = 'DUPLICATED ENTRY'
         else
           @result.ids[id] = comment
+        if comment.namespace and @result.ids.hasOwnProperty comment.namespace+id
+          @result.ids[comment.namespace+id] = 'DUPLICATED ENTRY'
+        else
           @result.ids[comment.namespace+id] = comment
         comment.html_id = (comment.namespace+id).replace(/[^A-Za-z0-9_]/g, '_')
 
@@ -367,7 +374,7 @@ class Collector
             comment.override_link = tag.string
 
       if comment.ctx.type is 'class'
-        if /^class +\w+ +extends +([\w\.]+)/.exec comment.code
+        if /^class +\w+ +extends +([\w\.]+)/.exec comment.class_code
           comment.extends.push RegExp.$1
           @result.ids[RegExp.$1]?.subclasses.push comment.ctx.name
 
@@ -486,6 +493,20 @@ class Collector
       return 'unknown'
 
   ##
+  # Makes reverse see alsos
+  makeReverseSeeAlso: (comments) -&gt;
+    for comment in comments
+      for see in comment.sees
+        other = @result.ids[see]
+        if other and other isnt 'DUPLICATED ENTRY'
+          me = @result.ids[comment.id]
+          if me and me is 'DUPLICATED ENTRY'
+            other.reverse_sees.push comment.namespace+comment.id
+          else
+            other.reverse_sees.push comment.id
+    return
+
+  ##
   # Runs
   run: -&gt;
     all_comments = []
@@ -511,6 +532,9 @@ class Collector
     console.log 'Total ' + file_count_read + ' files processed' if not is_test_mode
 
     @processComments all_comments
+
+    if @options.reverse_see_also
+      @makeReverseSeeAlso all_comments
 
     if not @options.files
       @result.files = []
