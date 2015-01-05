@@ -47,7 +47,7 @@ class Renderer
         link = @options.types[type]
       else if @result.ids[type] and @result.ids[type] isnt 'DUPLICATED ENTRY'
         filename = @result.ids[type].filename + '.html'
-        html_id = @result.ids[type].html_id
+        html_id = @result.ids[type].html_id or ''
         link = &quot;#{rel_path}#{filename}##{html_id}&quot;
       else
         return @makeMissingLink type, place
@@ -68,7 +68,7 @@ class Renderer
   makeSeeLink: (rel_path, str) -&gt;
     if @result.ids[str]
       filename = @result.ids[str].filename + '.html'
-      html_id = @result.ids[str].html_id
+      html_id = @result.ids[str].html_id or ''
       str = &quot;&lt;a href='#{rel_path}#{filename}##{html_id}'&gt;#{str}&lt;/a&gt;&quot;
     return str
 
@@ -83,7 +83,7 @@ class Renderer
     str = str.replace /\[\[#([^\[\]]+)\]\]/g, (_, $1) =&gt;
       if @result.ids[$1] and @result.ids[$1] isnt 'DUPLICATED ENTRY'
         filename = @result.ids[$1].filename + '.html'
-        html_id = @result.ids[$1].html_id
+        html_id = @result.ids[$1].html_id or ''
         return &quot;&lt;a href='#{rel_path}#{filename}##{html_id}'&gt;#{$1}&lt;/a&gt;&quot;
       else
         return @makeMissingLink $1
@@ -115,6 +115,7 @@ class Renderer
     jade_options.convertLink = @convertLink.bind(@)
     jade_options.github = @options.github
     jade_options.cache = true
+    jade_options.self = true
     jade.renderFile &quot;#{@templates_dir}/#{template}.jade&quot;, jade_options, (error, result) =&gt;
       return console.error error.stack if error
       output_file = &quot;#{@options.output_dir}/#{output}.html&quot;
