@@ -114,7 +114,10 @@
             comment.ctx.class_name = tag.parent
         when 'namespace'
           comment.namespace = if tag.string then tag.string + '.' else ''
-        when 'property', 'method'
+        when 'property'
+          comment.ctx.type = tag.type
+          comment.ctx.name = tag.name
+        when 'method'
           comment.ctx.type = tag.type
           if tag.string
             comment.ctx.name = tag.string
@@ -133,7 +136,7 @@
         when 'chainable'
           comment.chainable = true
         when 'param', 'return', 'returnprop', 'throws', 'resterror', 'see'
-          , 'extends', 'todo', 'type', 'api', 'uses', 'override'
+          , 'extends', 'todo', 'type', 'api', 'uses', 'override', 'example'
         else
           console.log &quot;Unknown tag : #{tag.type} in #{comment.defined_in}&quot;
 
@@ -193,7 +196,7 @@
       found = @findParam param.params, name
       return found if found
   return</pre></div></div></div></section><span id="Collector__getComments" class="fix-anchor"></span><section class="private"><div class="panel panel-success"><div data-toggle="collapse" data-target="#Collector__getComments_body" class="panel-heading collapsed"><h3 class="panel-title">Collector::getComments(file)<span class="label label-private">private</span><span class="pull-right glyphicon"></span></h3><div class="method-summary"><p>Returns list of comments of the given file</p>
-</div></div><div id="Collector__getComments_body" class="panel-collapse collapse"><div class="panel-body"><div></div><h4>Parameters</h4><table class="table table-bordered table-condensed table-hover"><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><span class="method-depth0"></span><code>file</code></td><td><span><a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a></span></td><td><span> </span></td></tr></table><h4>Returns</h4><table class="table table-bordered table-condensed table-hover"><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>(Returns)</td><td><span><a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='../classes/struct.Comment.html#struct_Comment'>Comment</a>&gt;</span></td><td><span></span></td></tr></table><div class="showcode"><button class="btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L284">/src/collect.coffee:284</a>)</span></div><pre class="sourcecode prettyprint .linenums:284">getComments: (type, path, file, data) -&gt;
+</div></div><div id="Collector__getComments_body" class="panel-collapse collapse"><div class="panel-body"><div></div><h4>Parameters</h4><table class="table table-bordered table-condensed table-hover"><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><span class="method-depth0"></span><code>file</code></td><td><span><a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String'>String</a></span></td><td><span> </span></td></tr></table><h4>Returns</h4><table class="table table-bordered table-condensed table-hover"><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>(Returns)</td><td><span><a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array'>Array</a>&lt;<a href='../classes/struct.Comment.html#struct_Comment'>Comment</a>&gt;</span></td><td><span></span></td></tr></table><div class="showcode"><button class="btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L287">/src/collect.coffee:287</a>)</span></div><pre class="sourcecode prettyprint .linenums:287">getComments: (type, path, file, data) -&gt;
   if type is 'coffeescript'
     comments = dox.parseCommentsCoffee data, { raw: true }
   else if type is 'javascript'
@@ -264,7 +267,7 @@
         else
           other.reverse_sees?.push comment.id
   return</pre></div></div></div></section><span id="Collector__processComments" class="fix-anchor"></span><section class="private"><div class="panel panel-success"><div data-toggle="collapse" data-target="#Collector__processComments_body" class="panel-heading collapsed"><h3 class="panel-title">Collector::processComments()<span class="label label-private">private</span><span class="pull-right glyphicon"></span></h3><div class="method-summary"><p>Structuralizes comments</p>
-</div></div><div id="Collector__processComments_body" class="panel-collapse collapse"><div class="panel-body"><div></div><h4>Parameters</h4><table class="table table-bordered table-condensed table-hover"><tr><td>(None)</td></tr></table><h4>Returns</h4><table class="table table-bordered table-condensed table-hover"><tr><td>(Nothing)</td></tr></table><div class="showcode"><button class="btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L322">/src/collect.coffee:322</a>)</span></div><pre class="sourcecode prettyprint .linenums:322">processComments: (comments) -&gt;
+</div></div><div id="Collector__processComments_body" class="panel-collapse collapse"><div class="panel-body"><div></div><h4>Parameters</h4><table class="table table-bordered table-condensed table-hover"><tr><td>(None)</td></tr></table><h4>Returns</h4><table class="table table-bordered table-condensed table-hover"><tr><td>(Nothing)</td></tr></table><div class="showcode"><button class="btn btn-info">Show code</button><span> (defined in <a href="https://github.com/croquiscom/crojsdoc/blob/master//src/collect.coffee#L325">/src/collect.coffee:325</a>)</span></div><pre class="sourcecode prettyprint .linenums:325">processComments: (comments) -&gt;
   comments.forEach (comment) =&gt;
     desc = comment.description
     if desc
@@ -293,10 +296,7 @@
           tag.description = tag.description
           comment.returnprops.push tag
         when 'throws'
-          if /{([^}]+)}\s*(.*)/.exec tag.string
-            comment.throws.push message: RegExp.$1, description: RegExp.$2
-          else
-            comment.throws.push message: tag.string, description: ''
+          comment.throws.push message: tag.message, description: tag.description
         when 'resterror'
           if /{(\d+)\/([A-Za-z0-9_ ]+)}\s*(.*)/.exec tag.string
             comment.resterrors.push code: RegExp.$1, message: RegExp.$2, description: RegExp.$3
