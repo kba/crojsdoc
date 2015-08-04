@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CroJSDoc - collect.coffee</title><script>if (location.protocol.match(/^http/) && location.pathname.match('\.html') === null && location.pathname.slice(-1) !== '/') {
   location.href = location.href + '/';
-}</script><link href="../bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"><!--[if lt IE 9]><script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script><script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]--><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><nav role="navigation" class="navbar navbar-default navbar-fixed-top"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#top-navigation-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><div id="top-navigation-collapse" class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href="../index.html">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/ListOfTags.html">List of tags</a></li><li><a href="../guides/SetupGithubPages.html">Setup github pages</a></li><li><a href="../guides/SpecifyingReturns.html">Specifying returns</a></li><li><a href="../guides/SpecifyingTypes.html">Specifying types</a></li></ul></li><li><a href="../modules/index.html">Modules</a></li><li><a href="../classes/index.html">Classes</a></li><li class="dropdown active"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files - collect.coffee <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li><li><a href="../files/struct.coffee.html">struct.coffee</a></li><li><a href="../files/dox.dox.coffee.html">dox/dox.coffee</a></li><li><a href="../files/dox.dox_coffee.coffee.html">dox/dox_coffee.coffee</a></li><li><a href="../files/dox.index.coffee.html">dox/index.coffee</a></li><li><a href="../files/dox.utils.coffee.html">dox/utils.coffee</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div></nav><div class="container-fluid content"><div class="row"><div data-spy="affix" class="hidden-xs sidebar col-sm-3"><div class="cormo-sidenav"><div class="panel panel-default"><div id="undefined_body" class="panel-collapse collapse in"><ul class="nav nav-pills nav-stacked"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li class="active"><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li><li><a href="../files/struct.coffee.html">struct.coffee</a></li></ul></div></div><div class="panel panel-default"><div data-toggle="collapse" data-target="#dox__body" class="panel-heading">dox/<span class="pull-right glyphicon"></span></div><div id="dox__body" class="panel-collapse collapse in"><ul class="nav nav-pills nav-stacked"><li><a href="../files/dox.dox.coffee.html">dox.coffee</a></li><li><a href="../files/dox.dox_coffee.coffee.html">dox_coffee.coffee</a></li><li><a href="../files/dox.index.coffee.html">index.coffee</a></li><li><a href="../files/dox.utils.coffee.html">utils.coffee</a></li></ul></div></div></div></div><div class="col-sm-9 col-sm-offset-3"><section><h1>collect.coffee</h1></section><pre class="prettyprint">##
+}</script><link href="../bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"><!--[if lt IE 9]><script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script><script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]--><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><nav role="navigation" class="navbar navbar-default navbar-fixed-top"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#top-navigation-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><div id="top-navigation-collapse" class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href="../index.html">Home</a></li><li class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/ListOfTags.html">List of tags</a></li><li><a href="../guides/SetupGithubPages.html">Setup github pages</a></li><li><a href="../guides/SpecifyingReturns.html">Specifying returns</a></li><li><a href="../guides/SpecifyingTypes.html">Specifying types</a></li></ul></li><li><a href="../modules/index.html">Modules</a></li><li><a href="../classes/index.html">Classes</a></li><li class="dropdown active"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Files - collect.coffee <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/plugin.coffee.html">plugin.coffee</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li><li><a href="../files/dox.dox.coffee.html">dox/dox.coffee</a></li><li><a href="../files/dox.dox_coffee.coffee.html">dox/dox_coffee.coffee</a></li><li><a href="../files/dox.index.coffee.html">dox/index.coffee</a></li><li><a href="../files/dox.utils.coffee.html">dox/utils.coffee</a></li><li><a href="../files/types.code_context.coffee.html">types/code_context.coffee</a></li><li><a href="../files/types.comment.coffee.html">types/comment.coffee</a></li><li><a href="../files/types.content.coffee.html">types/content.coffee</a></li><li><a href="../files/types.options.coffee.html">types/options.coffee</a></li><li><a href="../files/types.result.coffee.html">types/result.coffee</a></li><li><a href="../files/types.tag.coffee.html">types/tag.coffee</a></li></ul></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div></nav><div class="container-fluid content"><div class="row"><div data-spy="affix" class="hidden-xs sidebar col-sm-3"><div class="cormo-sidenav"><div class="panel panel-default"><div id="undefined_body" class="panel-collapse collapse in"><ul class="nav nav-pills nav-stacked"><li><a href="../files/cli.coffee.html">cli.coffee</a></li><li class="active"><a href="../files/collect.coffee.html">collect.coffee</a></li><li><a href="../files/example.coffee.html">example.coffee</a></li><li><a href="../files/example.js.html">example.js</a></li><li><a href="../files/plugin.coffee.html">plugin.coffee</a></li><li><a href="../files/render.coffee.html">render.coffee</a></li></ul></div></div><div class="panel panel-default"><div data-toggle="collapse" data-target="#dox__body" class="panel-heading">dox/<span class="pull-right glyphicon"></span></div><div id="dox__body" class="panel-collapse collapse in"><ul class="nav nav-pills nav-stacked"><li><a href="../files/dox.dox.coffee.html">dox.coffee</a></li><li><a href="../files/dox.dox_coffee.coffee.html">dox_coffee.coffee</a></li><li><a href="../files/dox.index.coffee.html">index.coffee</a></li><li><a href="../files/dox.utils.coffee.html">utils.coffee</a></li></ul></div></div><div class="panel panel-default"><div data-toggle="collapse" data-target="#types__body" class="panel-heading">types/<span class="pull-right glyphicon"></span></div><div id="types__body" class="panel-collapse collapse in"><ul class="nav nav-pills nav-stacked"><li><a href="../files/types.code_context.coffee.html">code_context.coffee</a></li><li><a href="../files/types.comment.coffee.html">comment.coffee</a></li><li><a href="../files/types.content.coffee.html">content.coffee</a></li><li><a href="../files/types.options.coffee.html">options.coffee</a></li><li><a href="../files/types.result.coffee.html">result.coffee</a></li><li><a href="../files/types.tag.coffee.html">tag.coffee</a></li></ul></div></div></div></div><div class="col-sm-9 col-sm-offset-3"><section><h1>collect.coffee</h1></section><pre class="prettyprint">##
 # Collects comments from source files
 # @module collect
 # @see Collector
@@ -30,24 +30,22 @@ class Collector
 
   ##
   # Adds a guide file to the result
-  # @private
-  addGuide: (file, data) -&gt;
-    id = file.substr(0, file.length-3)
-    file = file.substr(0, file.length-8).replace(/\//g, '.')
+  _addGuide: (path, data) -&gt;
+    id = path.substr(0, path.length-3)
+    name = path.substr(0, path.length-8).replace(/\//g, '.')
     item =
-      name: inflect.humanize inflect.underscore file
-      filename: 'guides/' + file
+      name: inflect.humanize inflect.underscore name
+      filename: 'guides/' + name
       content: markdown data
     @result.guides.push item
     @result.ids[id] = item
 
   ##
   # Adds a feature file to the result
-  # @private
-  addFeature: (file, data) -&gt;
-    file = file.substr 0, file.length-8
+  _addFeature: (path, data) -&gt;
+    name = path.substr 0, path.length-8
     namespace = ''
-    file = file.replace /(.*)\//, (_, $1) -&gt;
+    name = name.replace /(.*)\//, (_, $1) -&gt;
       namespace = $1 + '/'
       return ''
     feature = ''
@@ -55,24 +53,23 @@ class Collector
       feature = $1
       return ''
     @result.features.push
-      name: namespace + file
+      name: namespace + name
       namespace: namespace
-      filename: 'features/' + namespace.replace(/\//g, '.') + file
+      filename: 'features/' + namespace.replace(/\//g, '.') + name
       feature: feature
       content: data
 
   ##
   # Adds a source file to the result
-  # @private
-  addFile: (file, data) -&gt;
+  _addFile: (path, data) -&gt;
     namespace = ''
-    file = file.replace /(.*)\//, (_, $1) -&gt;
+    name = path.replace /(.*)\//, (_, $1) -&gt;
       namespace = $1 + '/'
       return ''
     @result.files.push
-      name: namespace + file
+      name: namespace + name
       namespace: namespace
-      filename: 'files/' + namespace.replace(/\//g, '.') + file
+      filename: 'files/' + namespace.replace(/\//g, '.') + name
       content: data
 
   ##
@@ -82,10 +79,9 @@ class Collector
   # * name '=' value : default value
   # * '+' name : addable
   # * '-' name : excludable
-  # @private
   # @param {Object} tag
   # @return {Object} given tag
-  processParamFlags: (tag) -&gt;
+  _processParamFlags: (tag) -&gt;
     # is optional parameter?
     if tag.name[0] is '[' and tag.name[tag.name.length-1] is ']'
       tag.name = tag.name.substr 1, tag.name.length-2
@@ -103,28 +99,26 @@ class Collector
 
   ##
   # Finds a parameter in the list
-  # @private
   # @param {Array&lt;Object&gt;} params
   # @param {String} name
   # @return {Object}
-  findParam: (params, name) -&gt;
+  _findParam: (params, name) -&gt;
     for param in params
       if param.name is name
         return param
       if param.params
-        found = @findParam param.params, name
+        found = @_findParam param.params, name
         return found if found
     return
 
   ##
   # Makes parameters(or returnprops) nested
-  # @private
-  makeNested: (comment, targetName) -&gt;
+  _makeNested: (comment, targetName) -&gt;
     i = comment[targetName].length
     while i--&gt;0
       param = comment[targetName][i]
       if match = param.name.match /\[?([^=]*)\.([^\]]*)\]?/
-        parentParam = @findParam comment[targetName], match[1]
+        parentParam = @_findParam comment[targetName], match[1]
         if parentParam
           comment[targetName].splice i, 1
           parentParam[targetName] = parentParam[targetName] or []
@@ -133,8 +127,7 @@ class Collector
 
   ##
   # Apply markdown
-  # @private
-  applyMarkdown: (str) -&gt;
+  _applyMarkdown: (str) -&gt;
     # we cannot use '###' for header level 3 or above in CoffeeScript, instead web use '##\#', ''##\##', ...
     # recover this for markdown
     str = str.replace /#\\#/g, '##'
@@ -142,8 +135,7 @@ class Collector
 
   ##
   # Classifies type and collect id
-  # @private
-  classifyComments: (comments) -&gt;
+  _classifyComments: (comments) -&gt;
     current_class = undefined
     current_module = undefined
 
@@ -168,14 +160,14 @@ class Collector
       else
         id = comment.ctx.name
       comment.ctx.fullname = id
-      comment.namespace = ''
+      comment.namespace or= ''
 
       if comment.ctx.type is 'property' or comment.ctx.type is 'method'
         if comment.ctx.cons?
-          comment.static = false
+          comment.isStatic = false
           comment.ctx.class_name = comment.ctx.cons
         else if comment.ctx.receiver?
-          comment.static = true
+          comment.isStatic = true
           comment.ctx.class_name = comment.ctx.receiver
 
       last = 0
@@ -199,13 +191,13 @@ class Collector
             comment.code = null
           when 'memberof'
             if /(::|#|\.prototype)$/.test tag.parent
-              comment.static = false
+              comment.isStatic = false
               comment.ctx.class_name = tag.parent.replace /(::|#|\.prototype)$/, ''
             else
-              comment.static = true
+              comment.isStatic = true
               comment.ctx.class_name = tag.parent
           when 'namespace'
-            comment.namespace = if tag.string then tag.string + '.' else ''
+            comment.namespace = if tag.string then tag.string else ''
           when 'property'
             comment.ctx.type = tag.type
             comment.ctx.name = tag.name
@@ -214,30 +206,39 @@ class Collector
             if tag.string
               comment.ctx.name = tag.string
           when 'static'
-            comment.static = true
+            comment.isStatic = true
           when 'private'
             comment.isPrivate = true
           when 'abstract'
-            comment.abstract = true
+            comment.isAbstract = true
           when 'async'
-            comment.async = true
+            comment.isAsync = true
           when 'promise'
-            comment.return_promise = true
+            comment.doesReturnPromise = true
           when 'nodejscallback'
-            comment.return_nodejscallback = true
+            comment.doesReturnNodejscallback = true
           when 'chainable'
-            comment.chainable = true
-          when 'param', 'return', 'returnprop', 'throws', 'resterror', 'see'
-            , 'extends', 'todo', 'type', 'api', 'uses', 'override', 'example'
+            comment.isChainable = true
+          when 'type'
+            if not tag.types and tag.typeString
+              typeString = tag.typeString
+              if not /{.*}/.test typeString
+                typeString = '{' + typeString + '}'
+              dox.parseTagTypes typeString, tag
+          when 'param', 'return', 'returns', 'returnprop', 'throws', 'resterror', 'see'
+            , 'extends', 'todo', 'api', 'uses', 'override', 'example'
           else
-            console.log &quot;Unknown tag : #{tag.type} in #{comment.defined_in}&quot;
+            console.log &quot;Unknown tag : #{tag.type} in #{comment.full_path}&quot;
+
+      if comment.namespace
+        comment.namespace += '.'
 
       if comment.ctx.class_name
         if comment.ctx.type is 'function'
           comment.ctx.type = 'method'
         else if comment.ctx.type is 'declaration'
           comment.ctx.type = 'property'
-        seperator = if comment.static then '.' else '::'
+        seperator = if comment.isStatic then '.' else '::'
         id = comment.ctx.class_name + seperator + comment.ctx.name
         comment.ctx.fullname = comment.ctx.class_name.replace(/.*[\./](\w+)/, '$1') + seperator + comment.ctx.name
 
@@ -283,18 +284,20 @@ class Collector
 
   ##
   # Returns list of comments of the given file
-  # @private
-  # @param {String} file
   # @return {Array&lt;Comment&gt;}
-  getComments: (type, path, file, data) -&gt;
+  _getComments: (type, full_path, path, data) -&gt;
     if type is 'coffeescript'
       comments = dox.parseCommentsCoffee data, { raw: true }
+      comments.forEach (comment) -&gt;
+        comment.language = 'coffeescript'
     else if type is 'javascript'
       comments = dox.parseComments data, { raw: true }
+      comments.forEach (comment) -&gt;
+        comment.language = 'javascript'
     else if type is 'page'
       namespace = ''
-      file = file.substr(0, file.length-3).replace(/[^A-Za-z0-9]*Page$/, '')
-      file = file.replace /(.*)\//, (_, $1) -&gt;
+      name = path.substr(0, path.length-3).replace(/[^A-Za-z0-9]*Page$/, '')
+      name = name.replace /(.*)\//, (_, $1) -&gt;
         namespace = $1
         return ''
       comments = [ {
@@ -303,7 +306,7 @@ class Collector
           body: data
           full: ''
         tags: [
-          { type: 'page', string: file }
+          { type: 'page', string: name }
           { type: 'namespace', string: namespace }
         ]
       } ]
@@ -314,40 +317,48 @@ class Collector
     comments = comments.filter (comment) -&gt;
       return comment.description.full or comment.description.summary or comment.description.body or comment.tags?.length &gt; 0
 
-    comments.forEach (comment) =&gt;
-      comment.defined_in = path
+    comments.forEach (comment) -&gt;
+      comment.full_path = full_path
+      comment.path = path
+      return
 
-    @classifyComments comments
+    if @options.plugins
+      comments.forEach (comment) =&gt;
+        @options.plugins.forEach (plugin) -&gt;
+          plugin.onComment comment
+          return
+        return
+
+    @_classifyComments comments
 
     return comments
 
   ##
   # Structuralizes comments
-  # @private
-  processComments: (comments) -&gt;
+  _processComments: (comments) -&gt;
     comments.forEach (comment) =&gt;
       desc = comment.description
       if desc
-        desc.full = @applyMarkdown desc.full
-        desc.summary = @applyMarkdown desc.summary
-        desc.body = @applyMarkdown desc.body
+        desc.full = @_applyMarkdown desc.full
+        desc.summary = @_applyMarkdown desc.summary
+        desc.body = @_applyMarkdown desc.body
 
       for tag in comment.tags
         switch tag.type
           when 'param'
-            tag = @processParamFlags tag
+            tag = @_processParamFlags tag
             for type, i in tag.types
               tag.types[i] = type
             tag.description = tag.description
             comment.params.push tag
-          when 'return'
+          when 'return', 'returns'
             for type, i in tag.types
               tag.types[i] = type
             tag.description = tag.description
             comment.return = tag
           when 'returnprop'
             tag = dox.parseTag '@param ' + tag.string
-            tag = @processParamFlags tag
+            tag = @_processParamFlags tag
             for type, i in tag.types
               tag.types[i] = type
             tag.description = tag.description
@@ -385,10 +396,10 @@ class Collector
           @result.ids[RegExp.$1]?.subclasses.push comment.ctx.name
 
       # make parameters nested
-      @makeNested comment, 'params'
-      @makeNested comment, 'returnprops'
+      @_makeNested comment, 'params'
+      @_makeNested comment, 'returnprops'
 
-      if comment.return_nodejscallback
+      if comment.doesReturnNodejscallback
         callback_params = [ {
             name: 'error'
             types: ['Error']
@@ -402,11 +413,11 @@ class Collector
         comment.params.push
           name: 'callback'
           types: ['Function']
-          optional: comment.return_promise
+          optional: comment.doesReturnPromise
           description: 'NodeJS style\'s callback'
           params: callback_params
 
-      if comment.chainable and not comment.return
+      if comment.isChainable and not comment.return
         comment.return =
           types: [comment.ctx.class_name]
           description: 'this'
@@ -418,7 +429,7 @@ class Collector
             if comment.ctx.is_coffeescript_constructor
               # merge to class comment
               class_comment.code = comment.code
-              class_comment.line_number = comment.line_number
+              class_comment.codeStart = comment.codeStart
               class_comment.params = comment.params
             else
               class_comment.properties.push comment
@@ -434,8 +445,7 @@ class Collector
   #
   # - convert hash to sorted array
   # - classes -&gt; classes &amp; modules
-  # @private
-  refineResult: -&gt;
+  _refineResult: -&gt;
     result = @result
     result.classes = Object.keys(result.classes).sort( (a,b) -&gt;
       a_ns = result.classes[a].namespace
@@ -481,26 +491,25 @@ class Collector
 
   ##
   # Returns the type of a file
-  # @private
-  getType: (file) -&gt;
-    if /\.coffee$/.test file
+  _getType: (path) -&gt;
+    if /\.coffee$/.test path
       return 'coffeescript'
-    else if /\.js$/.test file
+    else if /\.js$/.test path
       return 'javascript'
-    else if /Page\.md$/.test file
+    else if /Page\.md$/.test path
       return 'page'
-    else if /Guide\.md$/.test file
+    else if /Guide\.md$/.test path
       return 'guide'
-    else if /\.feature$/.test file
+    else if /\.feature$/.test path
       return 'feature'
-    else if file is 'README'
+    else if path is 'README'
       return 'readme'
     else
       return 'unknown'
 
   ##
   # Makes reverse see alsos
-  makeReverseSeeAlso: (comments) -&gt;
+  _makeReverseSeeAlso: (comments) -&gt;
     for comment in comments
       for see in comment.sees
         other = @result.ids[see]
@@ -517,34 +526,34 @@ class Collector
   run: -&gt;
     all_comments = []
     file_count_read = 0
-    for {path, file, data} in @contents
-      type = @getType file
+    for {full_path, path, data} in @contents
+      type = @_getType path
       switch type
         when 'guide'
-          @addGuide file, data
+          @_addGuide path, data
         when 'feature'
-          @addFeature file, data
+          @_addFeature path, data
         when 'coffeescript', 'javascript', 'page'
-          comments = @getComments type, path, file, data
+          comments = @_getComments type, full_path, path, data
           if comments?
             [].push.apply all_comments, comments
         when 'readme'
           @result.readme = markdown data
       if type is 'coffeescript' or type is 'javascript'
-        @addFile file, data
+        @_addFile path, data
       file_count_read++
-      console.log file + ' is processed' if not (@options.quite or is_test_mode)
+      console.log path + ' is processed' if not (@options.quite or is_test_mode)
 
     console.log 'Total ' + file_count_read + ' files processed' if not is_test_mode
 
-    @processComments all_comments
+    @_processComments all_comments
 
     if @options.reverse_see_also
-      @makeReverseSeeAlso all_comments
+      @_makeReverseSeeAlso all_comments
 
     if not @options.files
       @result.files = []
-    @refineResult()
+    @_refineResult()
 
 ##
 # Collects
