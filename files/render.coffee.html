@@ -53,7 +53,7 @@ class Renderer
     if res = type.match(/\[(.*)\]\((.*)\)/)
       @options.types[res[1]] = res[2]
       return &quot;&lt;a href='#{res[2]}'&gt;#{res[1]}&lt;/a&gt;&quot;
-    if res = type.match /(.*?)\.&lt;(.*)&gt;/
+    if res = type.match /(.*?)&lt;(.*)&gt;/
       return &quot;#{@_makeTypeLink rel_path, res[1]}&amp;lt;#{@_makeTypeLink rel_path, res[2]}&amp;gt;&quot;
     else
       return getlink type
