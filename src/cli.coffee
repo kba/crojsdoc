@@ -21,6 +21,8 @@ _readConfig = (options) ->
       options.output = config.output
     if config.hasOwnProperty 'title'
       options.title = config.title
+    if config.hasOwnProperty 'theme'
+      options.theme = config.theme
     if config.hasOwnProperty 'quiet' or config.hasOwnProperty 'quite'
       options.quiet = config.quiet is true
     if  config.hasOwnProperty 'files'
@@ -62,10 +64,11 @@ _parseArguments = (options) ->
     [ '-h', '--help', 'show help' ]
     [ '-o', '--output DIRECTORY', 'Output directory' ]
     [ '-t', '--title TITLE', 'Document Title' ]
-    [ '-q', '--quiet', 'less output' ]
+    [ '-T', '--theme THEME', 'Theme to use (default: "default")' ]
+    [ '-q', '--quiet', 'Less output' ]
     [ '-r', '--readme DIRECTORY', 'README.md directory path']
-    [ '-f', '--files', 'included source files' ]
-    [ '--external-types JSONFILE', 'external type definitions' ]
+    [ '-f', '--files', 'Included source files' ]
+    [ '--external-types JSONFILE', 'External type definitions' ]
   ]
   parser = new OptionParser switches
   parser.banner = 'Usage: crojsdoc [-o DIRECTORY] [-t TITLE] [-q] [options..] SOURCES...'
@@ -178,4 +181,8 @@ exports.run = ->
   options = _buildOptions()
   contents = _readSourceFiles options
   result = require('./collect') contents, options
-  require('./render') result, options
+  try
+    require('./render') result, options
+  catch e
+    console.error("Failed to render: #{e.message}")
+    process.exit(1)

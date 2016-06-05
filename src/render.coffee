@@ -13,9 +13,11 @@ class Renderer
   ##
   # Creates a Renderer instance
   constructor: (@result, @options) ->
-    theme = 'default'
-    @resources_dir = resolve __dirname, '../themes', theme, 'resources'
-    @templates_dir = resolve __dirname, '../themes', theme, 'templates'
+    themeDir = resolve __dirname, '../themes', (@options.theme or 'default')
+    if not fs.existsSync themeDir
+      throw new Error("No such theme: '#{themeDir}'")
+    @resources_dir = resolve themeDir, 'resources'
+    @templates_dir = resolve themeDir, 'templates'
 
   ##
   # @param {String} type
