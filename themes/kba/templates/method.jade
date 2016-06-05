@@ -2,7 +2,7 @@
 //- method: comment that includes description
 //- item!=method if overridden method
 
-div.panel.panel-success
+div.panel.panel-primary
   div.panel-heading.collapsed(data-toggle='collapse',data-target='#'+item.html_id+'_body')
     h3.panel-title
       | #{display_name}
@@ -17,10 +17,10 @@ div.panel.panel-success
           else
             | #{param.name}
           if i+1 < method.params.length
-            | , 
+            | ,
         | )
       if method.types && method.types.length && method.types.join('')
-        |  : 
+        |  :
         != method.types.map(function (t) { return self.makeTypeLink(self.rel_path, t); }).join(', ')
       if method.isPrivate
         span.label.label-private private
@@ -35,9 +35,9 @@ div.panel.panel-success
       if is_method_of_class && method.isChainable
         span.label.label-chainable chainable
       span.pull-right.glyphicon
-    div.method-summary
+    div.method-summary.lead
       != self.convertLink(self.rel_path, method.description.summary)
-  div.panel-collapse.collapse.in(id=item.html_id+'_body')
+  div.panel-collapse.collapse(id=item.html_id+'_body')
     div.panel-body
       if item!==method
         div!= 'Overrides ' + self.makeTypeLink(self.rel_path, item.override_link)
@@ -56,7 +56,7 @@ div.panel.panel-success
               li
                 |{
                 span= tag.message
-                |} 
+                |}
                 span!= self.convertLink(self.rel_path, tag.description)
         if method.resterrors.length
           h4 Rest Errors:
@@ -67,7 +67,7 @@ div.panel.panel-success
                 span= tag.code
                 |/
                 span= tag.message
-                |} 
+                |}
                 span!= self.convertLink(self.rel_path, tag.description)
       - var supplement_item = item
       include supplement
