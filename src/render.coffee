@@ -105,6 +105,7 @@ class Renderer
   # Renders one template
   _renderOne: (jade_options, template, output) ->
     jade_options.result = @result
+    jade_options.options = @options
     jade_options.makeTypeLink = @_makeTypeLink.bind(@) if not jade_options.makeTypeLink
     jade_options.makeSeeLink = @_makeSeeLink.bind(@)
     jade_options.convertLink = @_convertLink.bind(@)
