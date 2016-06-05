@@ -381,6 +381,8 @@ class Collector
             for type, i in tag.types
               tag.types[i] = type
             comment.types = tag.types
+          when 'property'
+            comment.types = tag.types
           when 'example'
             comment.examples.push tag
           when 'override'
