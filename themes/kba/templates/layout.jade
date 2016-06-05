@@ -1,0 +1,59 @@
+doctype html
+html(lang='en')
+  block vars
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    title #{self.result.project_title} - #{self.name}
+    script.
+      if (location.protocol.match(/^http/) && location.pathname.match('\.html') === null && location.pathname.slice(-1) !== '/') {
+        location.href = location.href + '/';
+      }
+    link(href='#{self.rel_path}bootstrap-3.2.0-dist/css/bootstrap.min.css', rel='stylesheet', type='text/css')
+    | <!--[if lt IE 9]>
+    script(src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js")
+    script(src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js")
+    | <![endif]-->
+    link(href='#{self.rel_path}google-code-prettify/prettify.css', rel='stylesheet', type='text/css')
+    link(href='#{self.rel_path}style.css', rel='stylesheet', type='text/css')
+    block style
+  body(data-spy='scroll', data-target='.sidebar')
+    include site-nav
+    div.container-fluid.content
+      div.row
+        if use_affix
+          div.hidden-xs.sidebar(data-spy='affix',class='col-sm-'+sidebar_span)
+            if has_namespace
+              div.cormo-sidenav
+                each ns_items in items
+                  div.panel.panel-default
+                    if ns_items[0].namespace!==''
+                      - var display_name = ns_items[0].namespace.replace(/\.$/, '')
+                      - var panel_id = display_name.replace(/\//g, '_')
+                      div.panel-heading(data-toggle='collapse',data-target='#'+panel_id+'_body')
+                        = display_name
+                        span.pull-right.glyphicon
+                    div.panel-collapse.collapse.in(id=panel_id+'_body')
+                      ul.nav.nav-pills.nav-stacked
+                        each item in ns_items
+                          block nav-item
+            else
+              block nav
+          div(class='col-sm-'+body_span,class='col-sm-offset-'+sidebar_span)
+            block body
+        else
+          div.hidden-xs(class='col-sm-'+sidebar_span)
+            block nav
+          div(class='col-sm-'+body_span)
+            block body
+    script(src='http://code.jquery.com/jquery-1.11.0.min.js')
+    script(src='#{self.rel_path}bootstrap-3.2.0-dist/js/bootstrap.min.js')
+    script(src='#{self.rel_path}google-code-prettify/prettify.js')
+    script(src='#{self.rel_path}script.js')
+    script(src='#{self.rel_path}group-examples.js')
+    block script
+
+    if self.github && self.github.ribbon
+      a(href='#{self.github.repository}')
+        img(class='github-ribbon', src='https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png', alt='Fork me on GitHub')

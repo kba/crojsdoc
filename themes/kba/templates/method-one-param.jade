@@ -1,0 +1,30 @@
+td
+  span(class='method-depth'+depth)
+  code
+    if param.default_value
+      | #{param.name}=#{param.default_value}
+    else
+      | #{param.name}
+  if param.optional
+    span.pull-right.label.label-optional optional = #{param.default_value}
+  if param.addable
+    span.pull-right.label.label-addable addable
+  if param.excludable
+    span.pull-right.label.label-excludable excludable
+td
+  if param.types && param.types.length && param.types.join('')
+    span
+      each type, i in param.types
+        != self.makeTypeLink(self.rel_path, type)
+        if type==='Function'
+          | (
+          if param.params
+            - var funcparams = param.params.map(function (p) { return p.name })
+            | #{funcparams.join(', ')}
+          | )
+        if i+1 < param.types.length
+          | , 
+td
+  span
+    | 
+    != self.convertLink(self.rel_path, param.description)

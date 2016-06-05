@@ -1,0 +1,18 @@
+if supplement_item.sees.length || supplement_item.reverse_sees.length
+  h4 See Also:
+  ul
+    if supplement_item.sees.length
+      each str in supplement_item.sees
+        li!= self.makeSeeLink(self.rel_path, str)
+    if supplement_item.reverse_sees.length
+      each str in supplement_item.reverse_sees
+        li!= self.makeSeeLink(self.rel_path, str)
+if supplement_item.todos.length
+  h4 TODO:
+  ul
+    each tag in supplement_item.todos
+      li!= tag
+if supplement_item.examples.length
+  h4 Examples
+  each example, i in supplement_item.examples
+    pre.prettyprint!= example.string
