@@ -1,0 +1,79 @@
+//- item: current comment to process
+//- method: comment that includes description
+//- item!=method if overridden method
+
+div.panel.panel-primary
+  div.panel-heading.collapsed(data-toggle='collapse',data-target='#'+item.html_id+'_body')
+    h3.panel-title
+      | #{display_name}
+      if method.ctx.type==='method'
+        | (
+        each param, i in method.params
+          if param.optional
+            if param.default_value
+              | [#{param.name}=#{param.default_value}]
+            else
+              | [#{param.name}]
+          else
+            | #{param.name}
+          if i+1 < method.params.length
+            | ,
+        | )
+      if method.types && method.types.length && method.types.join('')
+        |  :
+        != method.types.map(function (t) { return self.makeTypeLink(self.rel_path, t); }).join(', ')
+      if method.isPrivate
+        span.label.label-private private
+      if is_method_of_class && method.isStatic
+        span.label.label-static static
+      if is_method_of_class && item.isAbstract
+        span.label.label-abstract abstract
+      if is_method_of_class && item!==method
+        span.label.label-override override
+      if method.ctx.type==='property'
+        span.label.label-property property
+      if is_method_of_class && method.isChainable
+        span.label.label-chainable chainable
+      span.pull-right.glyphicon
+    div.method-summary.lead
+      != self.convertLink(self.rel_path, method.description.summary)
+  div.panel-collapse.collapse(id=item.html_id+'_body')
+    div.panel-body
+      if item!==method
+        div!= 'Overrides ' + self.makeTypeLink(self.rel_path, item.override_link)
+        br
+      div!= self.convertLink(self.rel_path, method.description.body)
+      - var parameters = method.params
+      if method.ctx.type!=='property'
+        if parameters.length > 0
+          include method-parameters
+        if method.return
+          include method-returns
+        if method.throws.length
+          h4 Throws:
+          ul
+            each tag in method.throws
+              li
+                |{
+                span= tag.message
+                |}
+                span!= self.convertLink(self.rel_path, tag.description)
+        if method.resterrors.length
+          h4 Rest Errors:
+          ul
+            each tag in method.resterrors
+              li
+                |{
+                span= tag.code
+                |/
+                span= tag.message
+                |}
+                span!= self.convertLink(self.rel_path, tag.description)
+      - var supplement_item = item
+      include supplement
+      if item.code
+        - var showcode_label = 'Show code'
+        - var showcode_full_path = item.full_path
+        - var showcode_line_number = item.codeStart
+        - var showcode_code = item.code
+        include method-showcode

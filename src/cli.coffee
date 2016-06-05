@@ -10,46 +10,60 @@ walkdir = require 'walkdir'
 isWindows = process.platform is 'win32'
 
 ##
-# Reads a config file(crojsdoc.yaml) to build options
+# Reads 'crojsdoc' package.json variable and a config file(crojsdoc.yaml) to build options
 # @param {Options} options
 # @memberOf cli
 _readConfig = (options) ->
-  {safeLoad} = require 'js-yaml'
+  config = {
+    theme_opts: {}
+  }
   try
-    config = safeLoad fs.readFileSync(join(process.cwd(), 'crojsdoc.yaml'), 'utf-8')
-    if config.hasOwnProperty 'output'
-      options.output = config.output
-    if config.hasOwnProperty 'title'
-      options.title = config.title
-    if config.hasOwnProperty 'quiet' or config.hasOwnProperty 'quite'
-      options.quiet = config.quiet is true
-    if  config.hasOwnProperty 'files'
-      options.files = config.files is true
-    if config.hasOwnProperty('readme') and typeof config.readme is 'string'
-      options._readme = config.readme
-    if config.hasOwnProperty 'external-types'
-      options['external-types'] = config['external-types']
-    if config.hasOwnProperty 'sources'
-      if Array.isArray config.sources
-        [].push.apply options._sources, config.sources
-      else
-        options._sources.push config.sources
-    if config.hasOwnProperty 'github'
-      options.github = config.github
-      if options.github.branch is undefined
-        options.github.branch = 'master'
-    if config.hasOwnProperty 'reverse_see_also'
-      options.reverse_see_also = config.reverse_see_also is true
-    if config.hasOwnProperty 'plugins'
-      plugins = config.plugins
-      if not Array.isArray plugins
-        plugins = [plugins]
-      options.plugins = plugins.map (plugin) ->
-        try
-          require plugin
-        catch e
-          console.log "Plugin '#{plugin}' not found"
-      .filter (plugin) -> plugin
+    package_json = JSON.parse fs.readFileSync(join(process.cwd(), 'package.json'), 'utf-8')
+    config[k] = v for k,v of package_json.crojsdoc
+  catch e
+    null
+  try
+    {safeLoad} = require 'js-yaml'
+    crojsdoc_yaml = safeLoad fs.readFileSync(join(process.cwd(), 'crojsdoc.yaml'), 'utf-8')
+    config[k] = v for k,v of crojsdoc_yaml
+  catch e
+    null
+  options.theme_opts = config.theme_opts
+  if config.hasOwnProperty 'output'
+    options.output = config.output
+  if config.hasOwnProperty 'title'
+    options.title = config.title
+  if config.hasOwnProperty 'theme'
+    options.theme = config.theme
+  if config.hasOwnProperty 'quiet' or config.hasOwnProperty 'quite'
+    options.quiet = config.quiet is true
+  if  config.hasOwnProperty 'files'
+    options.files = config.files is true
+  if config.hasOwnProperty('readme') and typeof config.readme is 'string'
+    options._readme = config.readme
+  if config.hasOwnProperty 'external-types'
+    options['external-types'] = config['external-types']
+  if config.hasOwnProperty 'sources'
+    if Array.isArray config.sources
+      [].push.apply options._sources, config.sources
+    else
+      options._sources.push config.sources
+  if config.hasOwnProperty 'github'
+    options.github = config.github
+    if options.github.branch is undefined
+      options.github.branch = 'master'
+  if config.hasOwnProperty 'reverse_see_also'
+    options.reverse_see_also = config.reverse_see_also is true
+  if config.hasOwnProperty 'plugins'
+    plugins = config.plugins
+    if not Array.isArray plugins
+      plugins = [plugins]
+    options.plugins = plugins.map (plugin) ->
+      try
+        require plugin
+      catch e
+        console.log "Plugin '#{plugin}' not found"
+    .filter (plugin) -> plugin
     return
 
 ##
@@ -62,10 +76,11 @@ _parseArguments = (options) ->
     [ '-h', '--help', 'show help' ]
     [ '-o', '--output DIRECTORY', 'Output directory' ]
     [ '-t', '--title TITLE', 'Document Title' ]
-    [ '-q', '--quiet', 'less output' ]
+    [ '-T', '--theme THEME', 'Theme to use (default: "default")' ]
+    [ '-q', '--quiet', 'Less output' ]
     [ '-r', '--readme DIRECTORY', 'README.md directory path']
-    [ '-f', '--files', 'included source files' ]
-    [ '--external-types JSONFILE', 'external type definitions' ]
+    [ '-f', '--files', 'Included source files' ]
+    [ '--external-types JSONFILE', 'External type definitions' ]
   ]
   parser = new OptionParser switches
   parser.banner = 'Usage: crojsdoc [-o DIRECTORY] [-t TITLE] [-q] [options..] SOURCES...'
@@ -178,4 +193,8 @@ exports.run = ->
   options = _buildOptions()
   contents = _readSourceFiles options
   result = require('./collect') contents, options
-  require('./render') result, options
+  try
+    require('./render') result, options
+  catch e
+    console.error("Failed to render: #{e.message}")
+    process.exit(1)
